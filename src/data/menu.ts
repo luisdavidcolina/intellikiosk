@@ -1,34 +1,90 @@
 const menuTabItems = [
-  {type: 'combo', title: 'Combos', itemLength: 12},
-  {type: 'box', title: 'Boxes', itemLength: 12},
-  {type: 'dessert', title: 'Postres', itemLength: 12},
-  {type: 'drink', title: 'Bebidas', itemLength: 12},
+  { type: "foods", title: "Comidas", itemLength: 12 },
+  { type: "snack", title: "Snacks", itemLength: 12 },
+  { type: "licor", title: "Licores", itemLength: 12 },
+  { type: "drink", title: "Bebidas", itemLength: 12 },
 ];
 
 const menuList = [
-  {type: 'combo', menuName: 'Combo 1 - Burrito Supreme', menuInfo: 'Burrito supreme, complemento regular y gaseosa 400 ml. a elección', price: '17.90'},
-  {type: 'combo', menuName: 'Combo 2 - Quesadilla de Pollo', menuInfo: 'Quesadilla de pollo, complemento regular, side a elección y gaseosa 400 ml a elección .', price: '18.90'},
-  {type: 'combo', menuName: 'Combo 3 - 2 Tacos Supreme', menuInfo: '2 crunchy tacos supreme, porción de nachos o papas y gaseosa de 400 ml a elección.', price: '19.90'},
-  {type: 'box', menuName: 'Big Bell Box', menuInfo: 'Taco, burrito supreme, quesadilla de queso, porción nachos regular y gaseosa 400 ml a elección.', price: '27.90'},
-  {type: 'box', menuName: 'Box Stacker', menuInfo: 'Taco, stacker (carne molida), cheesy beef burrito, complemento regular y gaseosa 400 ml a elección.', price: '27.90'},
-  {type: 'box', menuName: 'Box Chalupa', menuInfo: 'Quesadilla de queso, 2 chalupas, porción nachos o papas regular, postre y gaseosa 400 ml a elección.', price: '29.90'},
-  {type: 'dessert', menuName: 'Flauta Manjar Blanco', menuInfo: 'Flauta de tortilla de harina rellena de manjar blanco', price: '3.00'},
-  {type: 'dessert', menuName: 'Flauta Chocolate', menuInfo: 'Flauta de tortilla de harina rellena de chocolate', price: '3.00'},
-  {type: 'dessert', menuName: 'Cinnamon Twist', menuInfo: 'Rollitos de canela cubiertos de azúcar', price: '3.00'},
-  {type: 'drink', menuName: 'Coca-Cola', price: '5.00'},
-  {type: 'drink', menuName: 'Coca-Cola Zero', price: '5.00'},
-  {type: 'drink', menuName: 'Sprite', price: '5.00'},
-  {type: 'drink', menuName: 'Agua', price: '5.00'},
+  {
+    type: "foods",
+    menuName: "Enrrollado Árabe",
+    menuInfo: "Enrrollado Árabe Vegetariano El Cedro 200gr",
+    price: "6.9",
+  },
+  {
+    type: "foods",
+    menuName: "Hot Dog XL Alemán",
+    menuInfo:
+      "Hot Dog Municipal XL con sarza alemana, salsa BBQ y papitas al hilo.",
+    price: "26.9",
+  },
+  {
+    type: "foods",
+    menuName: "Burger BBQ",
+    menuInfo:
+      "Burger 130gr con Queso Emmental, Tocino, salsa BBQ black, Onion Ring, Lechuga y Tomate.",
+    price: "20.9",
+  },
+  {
+    type: "snack",
+    menuName: "Papas Inka Chips",
+    menuInfo: "Papas Inka Chips Saladas 142gr.",
+    price: "8.2",
+  },
+  {
+    type: "snack",
+    menuName: "Cheetos",
+    menuInfo: "Cheetos Mega Queso Bolsa 74gr.",
+    price: "4.7",
+  },
+  {
+    type: "snack",
+    menuName: "Plátano Frito Inka Chips",
+    menuInfo: "Plátano Frito Inka Chips Salado 100gr.",
+    price: "5",
+  },
+  {
+    type: "licor",
+    menuName: "Whisky Johnnie Walker",
+    menuInfo: "Whisky Johnnie Walker Red Label 750ml.",
+    price: "73.9",
+  },
+  {
+    type: "licor",
+    menuName: "Cerveza Pilsen",
+    menuInfo: "Cerveza Pilsen 12Pack Lata 355ml.",
+    price: "49.9",
+  },
+  {
+    type: "licor",
+    menuName: "Vino Rosé Santiago Queirolo",
+    menuInfo: "Vino Rosé Santiago Queirolo Semi Seco Botella 750ml.",
+    price: "22.9",
+  },
+  {
+    type: "drink",
+    menuName: "Bebida Energizante Monster Energy Lata 473ml",
+    price: "7.5",
+  },
+  {
+    type: "drink",
+    menuName: "Gatorade Tropical Fruit Botella 750ml",
+    price: "4.7",
+  },
+  {
+    type: "drink",
+    menuName: "Bebida Frugos Del Valle Chicha Morada 1lt",
+    price: "4.9",
+  },
 ];
 
 const extraPriceMap = {
   setPrice: 2000,
-  largeSetPrice: 2700
-}
+  largeSetPrice: 2700,
+};
 
-export {
-  menuTabItems, menuList, extraPriceMap
-}
+export { menuTabItems, menuList, extraPriceMap };
 /*
 const menuTabItems = [
   {type: 'special', title: 'special', itemLength: 6},
