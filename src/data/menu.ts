@@ -84,7 +84,7 @@ const menuList = [
     price: "4.7",
   },
   {
-    code: "1242",
+    code: "7750182006088",
     type: "drink",
     menuName: "Bebida Frugos Del Valle Chicha Morada 1lt",
     price: "4.9",
