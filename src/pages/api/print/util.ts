@@ -5,7 +5,7 @@ import NewPrinter from "printer";
 import logger from "@/pages/api/log";
 import { IItem } from "@/data/context";
 
-const PRINTER_NAME = `Microsoft Print to PDF`;
+const PRINTER_NAME = `printer1`;
 
 const getTime = () => {
   const date = new Date();
