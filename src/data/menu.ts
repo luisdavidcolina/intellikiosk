@@ -78,7 +78,7 @@ const menuList = [
     price: "7.5",
   },
   {
-    code: "1241",
+    code: "7750182000703",
     type: "drink",
     menuName: "Gatorade Tropical Fruit Botella 750ml",
     price: "4.7",

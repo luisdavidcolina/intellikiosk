@@ -49,7 +49,7 @@ const HomePage = () => {
         text = text + e.key;
       }
       console.log(text);
-      if (text.length >= 4) {
+      if (text.length >=13) {
         const itemFind = menuList.find((item) =>
           (text).includes(item.code)
         ) as IItem;
