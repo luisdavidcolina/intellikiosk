@@ -6,6 +6,7 @@ import logger from "@/pages/api/log";
 import { IItem } from "@/data/context";
 
 const PRINTER_NAME = `printer1`;
+const PRINTER_CHIT_NAME = `kitchen`;
 
 const getTime = () => {
   const date = new Date();
@@ -76,6 +77,55 @@ export const print = async (items: IItem[]) => {
       printer: PRINTER_NAME,
       success: function (jobID) {
         logger.info(`Print sent to "${PRINTER_NAME}" - Printer Job: ${jobID}`);
+        printer.clear();
+      },
+      error: function (err) {
+        logger.error(JSON.stringify(err));
+      },
+    });
+  } catch (err) {
+    console.log(err.message);
+    logger.error(JSON.stringify(err.message));
+  }
+};
+
+export const printChit = async (items: IItem[]) => {
+  try {
+    logger.info(`Initializing chit printing  in "${PRINTER_CHIT_NAME}"`);
+    let printer = new ThermalPrinter({
+      type: PrinterTypes.EPSON,
+      interface: "",
+      width: 48,
+      characterSet: "SLOVENIA",
+      removeSpecialCharacters: false,
+      lineCharacter: "-",
+    });
+    printer.bold(true);
+    printer.alignLeft();
+    printer.println("COMANDA");
+    printer.alignRight();
+    printer.table([``, `Cuenta: 9999`]);
+    printer.newLine();
+    printer.bold(false);
+    printer.table([`Fecha: XXX`, `Hora: ${getTime()}`]);
+    printer.drawLine();
+    printer.newLine();
+    items.forEach((item: any) => {
+      printer.tableCustom([
+        // Prints table with custom settings (text, align, width, cols, bold)
+        { text: item.menuName, align: "LEFT", width: 0.5 },
+        { text: "1", align: "CENTER", width: 0.2 },
+      ]);
+    });
+    printer.drawLine();
+    printer.cut();
+
+    NewPrinter.printDirect({
+      data: printer.getBuffer(),
+      type: "RAW",
+      printer: PRINTER_CHIT_NAME,
+      success: function (jobID) {
+        logger.info(`Print sent to "${PRINTER_CHIT_NAME}" - Printer Job: ${jobID}`);
         printer.clear();
       },
       error: function (err) {

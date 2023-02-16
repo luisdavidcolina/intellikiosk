@@ -1,20 +1,20 @@
 const menuTabItems = [
   { type: "foods", title: "Comidas", itemLength: 12 },
   { type: "snack", title: "Snacks", itemLength: 12 },
-  { type: "licor", title: "Licores", itemLength: 12 },
+  { type: "licor", title: "Galletas", itemLength: 12 },
   { type: "drink", title: "Bebidas", itemLength: 12 },
 ];
 
 const menuList = [
   {
-    code: "1231",
+    code: "123412341234",
     type: "foods",
     menuName: "Enrrollado Árabe",
     menuInfo: "Enrrollado Árabe Vegetariano El Cedro 200gr",
     price: "6.9",
   },
   {
-    code: "1232",
+    code: "123412341236",
     type: "foods",
     menuName: "Hot Dog XL Alemán",
     menuInfo:
@@ -22,7 +22,7 @@ const menuList = [
     price: "26.9",
   },
   {
-    code: "1234",
+    code: "123412341235",
     type: "foods",
     menuName: "Burger BBQ",
     menuInfo:
@@ -30,64 +30,110 @@ const menuList = [
     price: "20.9",
   },
   {
-    code: "1235",
+    code: "7750526000895",
     type: "snack",
-    menuName: "Papas Inka Chips",
-    menuInfo: "Papas Inka Chips Saladas 142gr.",
-    price: "8.2",
+    menuName: "Papas Inka Chips Salada 142gr",
+
+    price: "9.50",
   },
   {
-    code: "1236",
+    code: "775874004919",
     type: "snack",
-    menuName: "Cheetos",
-    menuInfo: "Cheetos Mega Queso Bolsa 74gr.",
-    price: "4.7",
+    menuName: "Papas Fritas Lay's Clasicas 38g ",
+
+    price: "3.8",
   },
   {
-    code: "123",
+    code: "7758574004445",
     type: "snack",
-    menuName: "Plátano Frito Inka Chips",
-    menuInfo: "Plátano Frito Inka Chips Salado 100gr.",
+    menuName: "Nacho Dorito Clasico 45g",
+    price: "8.5",
+  },
+  {
+    code: "7758574004230",
+    type: "snack",
+    menuName: "Piqueo Snax Frito Lay 225gr",
+
     price: "5",
   },
+
   {
-    code: "1237",
+    code: "03800084673",
+    type: "snack",
+    menuName: "Papa Pringles Original 37gr",
+
+    price: "2.9",
+  },
+  {
+    code: "7501006559002",
+    type: "snack",
+    menuName: "Pop Corn Natural Act Li 80 g",
+
+    price: "4.5",
+  },
+  {
+    code: "7750106003094",
     type: "licor",
-    menuName: "Whisky Johnnie Walker",
-    menuInfo: "Whisky Johnnie Walker Red Label 750ml.",
-    price: "73.9",
+    menuName: "Soda San Jorge ",
+
+    price: "0.8",
   },
   {
-    code: "1238",
+    code: "7622201700973",
     type: "licor",
-    menuName: "Cerveza Pilsen",
-    menuInfo: "Cerveza Pilsen 12Pack Lata 355ml.",
-    price: "49.9",
+    menuName: "Galletas Ritz",
+
+    price: "2.1",
   },
   {
-    code: "1239",
+    code: "7750168002240",
     type: "licor",
-    menuName: "Vino Rosé Santiago Queirolo",
-    menuInfo: "Vino Rosé Santiago Queirolo Semi Seco Botella 750ml.",
-    price: "22.9",
+    menuName: "Galletas Oreo 4g",
+
+    price: "1.2",
   },
   {
-    code: "1240",
-    type: "drink",
-    menuName: "Bebida Energizante Monster Energy Lata 473ml",
-    price: "7.5",
+    code: "7622300279783",
+    type: "licor",
+    menuName: "Galleta Sabor Vainilla Field Paquete",
+    price: "1.4",
   },
   {
-    code: "7750182000703",
-    type: "drink",
-    menuName: "Gatorade Tropical Fruit Botella 750ml",
-    price: "4.7",
+    code: "7750168214292",
+    type: "licor",
+    menuName: "Galletas con Chispas de chocolate",
+    price: "8.9",
   },
   {
     code: "7750182006088",
+    type: "licor",
+    menuName: "Galleta Sabor Vainilla Field",
+    price: "1.4",
+  },
+  {
+    code: "7750182003322",
     type: "drink",
-    menuName: "Bebida Frugos Del Valle Chicha Morada 1lt",
-    price: "4.9",
+    menuName: "Gaseosa Inca Cola 500ml",
+
+    price: "3.2",
+  },
+  {
+    code: "7751655001333",
+    type: "drink",
+    menuName: "Gateorade Maradona 500ml",
+    price: "3.5",
+  },
+  {
+    code: "77530967",
+    type: "drink",
+    menuName: "Agua San Mateo con gas 600ml",
+    price: "2",
+  },
+  {
+    code: "7750182000697",
+    type: "drink",
+    menuName: "Gaseosa Coca Cola Sin azucar 500m",
+    price: "3.2",
   },
 ];
 

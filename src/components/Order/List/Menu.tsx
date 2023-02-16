@@ -101,8 +101,8 @@ const MenuList = (props: IMenuList) => {
   return (
     <MenuListWrapper size={menuLength}>
       {menus.map((menu, idx) => 
-        <MenuListItem key={idx} onClick={() => onMenuClick(Object.assign(menu, {img: `/images/menu/${menu?.type}_${idx}.png`, setImg: `/images/menu/${menu?.type}_set_${idx}.png`}))}>
-          <MenuListImage src={`/images/menu/${menu?.type}_${idx}.png`} size={menuLength}/>
+        <MenuListItem key={idx} onClick={() => onMenuClick(Object.assign(menu, {img: `/images/menu/${menu?.code}.png`, setImg: `/images/menu/${menu?.code}.png`}))}>
+          <MenuListImage src={`/images/menu/${menu?.code}.png`} size={menuLength}/>
           <SmSpanBlack margin="10px">{menu?.menuName}</SmSpanBlack>
           {menu?.menuInfo && <XsSpanLightGray margin="0 10px 10px">{menu?.menuInfo}</XsSpanLightGray>}
           <SmSpanPrimary>S/. {menu?.price}</SmSpanPrimary>

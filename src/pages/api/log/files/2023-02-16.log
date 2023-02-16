@@ -7,3 +7,7 @@
 [2023-01-04 15:56:34] [error]: "{}"
 [2023-01-04 15:57:18] [info]: "Initializing printing in "Microsoft Print to PDF""
 [2023-01-04 15:57:18] [info]: "Print sent to "Microsoft Print to PDF" - Printer Job: 3"
+[2023-01-04 16:43:13] [info]: "Initializing printing in "printer1""
+[2023-01-04 16:43:13] [error]: "{}"
+[2023-01-04 16:45:18] [info]: "Initializing printing in "printer1""
+[2023-01-04 16:45:18] [error]: "{}"

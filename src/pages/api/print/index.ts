@@ -2,7 +2,7 @@
 
 import getHandler from '@/pages/api/getHandler'
 
-import {print} from './util'
+import {print, printChit} from './util'
 
 const handler = getHandler()
 
@@ -11,6 +11,7 @@ handler.post(async (req, res) => {
   const {items} = req.body
   try {
     await print(items)
+    await printChit(items)
     res.status(200).json('hola')
   }
   catch (err) {
