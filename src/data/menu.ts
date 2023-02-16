@@ -1,81 +1,82 @@
 const menuTabItems = [
-  { type: "foods", title: "Comidas", itemLength: 12 },
-  { type: "snack", title: "Snacks", itemLength: 12 },
-  { type: "licor", title: "Licores", itemLength: 12 },
+  { type: "pollo", title: "Pollos", itemLength: 12 },
   { type: "drink", title: "Bebidas", itemLength: 12 },
+  { type: "postre", title: "Postres", itemLength: 12 },
+  { type: "promo", title: "Promociones", itemLength: 12 },
 ];
 
 const menuList = [
   {
-    type: "foods",
-    menuName: "Enrrollado Árabe",
-    menuInfo: "Enrrollado Árabe Vegetariano El Cedro 200gr",
-    price: "6.9",
+    type: "pollo",
+    menuName: "1/4 Pollo a la Brasa con papas fritas y ensalada",
+    menuInfo: "Incluye salsas.",
+    price: "28.9",
   },
   {
-    type: "foods",
-    menuName: "Hot Dog XL Alemán",
+    type: "pollo",
+    menuName: "1/2 Pollo a la Brasa con papas fritas y ensalada",
+    menuInfo: "Incluye salsas.",
+    price: "45.9",
+  },
+  {
+    type: "pollo",
+    menuName: "1 Pollo a la Brasa con papas fritas y ensalada regular",
+    menuInfo: "Incluye salsas.",
+    price: "78.9",
+  },
+  {
+    type: "postre",
+    menuName: "Torta de chocolate",
+    menuInfo: "Torta de chocolate.",
+    price: "15.9",
+  },
+  {
+    type: "postre",
+    menuName: "Torta Tres Leches",
+    menuInfo: "Torta Tres Leches.",
+    price: "15.9",
+  },
+  {
+    type: "postre",
+    menuName: "Pie de Limón",
+    menuInfo: "Pie de Limón.",
+    price: "15.9",
+  },
+  {
+    type: "promo",
+    menuName: "Promoción Brasa",
     menuInfo:
-      "Hot Dog Municipal XL con sarza alemana, salsa BBQ y papitas al hilo.",
-    price: "26.9",
+      "1/4 Pardos Brasa, papas fritas, guarnición de ensalada Pardos, bebida personal. Incluye salsas.",
+    price: "29.9",
   },
   {
-    type: "foods",
-    menuName: "Burger BBQ",
+    type: "promo",
+    menuName: "Promoción Chicharrón",
     menuInfo:
-      "Burger 130gr con Queso Emmental, Tocino, salsa BBQ black, Onion Ring, Lechuga y Tomate.",
-    price: "20.9",
+      "5 unidades de chicharrón, papas fritas o doradas, guarnición de ensalada Pardos, bebida personal. Incluye salsas.",
+    price: "33.9",
   },
   {
-    type: "snack",
-    menuName: "Papas Inka Chips",
-    menuInfo: "Papas Inka Chips Saladas 142gr.",
-    price: "8.2",
-  },
-  {
-    type: "snack",
-    menuName: "Cheetos",
-    menuInfo: "Cheetos Mega Queso Bolsa 74gr.",
-    price: "4.7",
-  },
-  {
-    type: "snack",
-    menuName: "Plátano Frito Inka Chips",
-    menuInfo: "Plátano Frito Inka Chips Salado 100gr.",
-    price: "5",
-  },
-  {
-    type: "licor",
-    menuName: "Whisky Johnnie Walker",
-    menuInfo: "Whisky Johnnie Walker Red Label 750ml.",
-    price: "73.9",
-  },
-  {
-    type: "licor",
-    menuName: "Cerveza Pilsen",
-    menuInfo: "Cerveza Pilsen 12Pack Lata 355ml.",
-    price: "49.9",
-  },
-  {
-    type: "licor",
-    menuName: "Vino Rosé Santiago Queirolo",
-    menuInfo: "Vino Rosé Santiago Queirolo Semi Seco Botella 750ml.",
-    price: "22.9",
+    type: "promo",
+    menuName: "Parrillero Original",
+    menuInfo:
+      "1/4 Pardos Parrillero original con papas fritas y guarnición de ensalada Pardos, bebida personal. Incluye salsas.",
+    price: "32.9",
   },
   {
     type: "drink",
-    menuName: "Bebida Energizante Monster Energy Lata 473ml",
+    menuName: "Chicha Pardos 500ml",
+    price: "7.9",
+  },
+  {
+    type: "drink",
+    menuName: "Inca Kola 500ml",
     price: "7.5",
   },
   {
     type: "drink",
-    menuName: "Gatorade Tropical Fruit Botella 750ml",
-    price: "4.7",
-  },
-  {
-    type: "drink",
-    menuName: "Bebida Frugos Del Valle Chicha Morada 1lt",
-    price: "4.9",
+    menuName: "Coca Cola 500ml",
+    price: "7.5",
   },
 ];
 
