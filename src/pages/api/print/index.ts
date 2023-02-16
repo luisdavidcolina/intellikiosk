@@ -7,7 +7,8 @@ import {print} from './util'
 const handler = getHandler()
 
 
-handler.get(async (req, res) => {
+handler.post(async (req, res) => {
+  const {items} = req.body
   try {
     await print()
     res.status(200).json('hola')

@@ -3,6 +3,7 @@ import { types as PrinterTypes } from 'node-thermal-printer'
 import NewPrinter from 'printer'
 
 import logger from '@/pages/api/log'
+import { IItem } from '@/data/context'
 
 const PRINTER_NAME = `BTP-S80(180)(U) 1`
 
@@ -11,7 +12,7 @@ const getTime = () => {
   return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 }
 
-export const print = async () => {
+export const print = async (items: IItem[]) => {
     logger.info(`Initializing printing in "${PRINTER_NAME}"`)
     let printer = new ThermalPrinter({
       type: PrinterTypes.EPSON,
@@ -28,7 +29,7 @@ export const print = async () => {
     printer.println('TICKET DE CONSUMO')
     printer.newLine()
     printer.bold(false)
-    printer.table([`POS: Kiosk`, `Cuenta: ${items[0].account}`])
+    printer.table([`POS: Kiosk`, `Cuenta: 9999`])
     printer.table([`Fecha: XXX`, `Hora: ${getTime()}`])
     printer.newLine()
     printer.underline(true)
@@ -40,17 +41,16 @@ export const print = async () => {
     ])
     let total = 0
     printer.underline(false)
-    /*
+    
     items.forEach((item: any) => {
       printer.tableCustom([
         // Prints table with custom settings (text, align, width, cols, bold)
-        { text: item.product, align: 'LEFT', width: 0.5 },
+        { text: item.menuName, align: 'LEFT', width: 0.5 },
         { text: '1', align: 'CENTER', width: 0.2 },
         { text: Number(item.price).toFixed(2), align: 'RIGHT', cols: 8 },
       ])
       total += Number(item.price)
     })
-    */
     printer.drawLine()
     printer.tableCustom([
       // Prints table with custom settings (text, align, width, cols, bold)

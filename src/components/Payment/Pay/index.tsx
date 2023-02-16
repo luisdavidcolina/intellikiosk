@@ -1,6 +1,6 @@
 import { useContext, MouseEvent } from "react";
 import axios from "axios";
-import { MenuContext, PageContext, StepContext } from "@/data/context";
+import { IItem, MenuContext, PageContext, StepContext } from "@/data/context";
 
 import {
   LgSpanBlack,
@@ -19,10 +19,14 @@ import {
   OrderCancelButton,
 } from "./Pay.styles";
 
-const getCas = async () => {
+const getCas = async (items: IItem[]) => {
   try {
-    const response = await axios.get(
-      `http://localhost:3000/api/print`
+    const response = await axios.post(
+      `http://localhost:3000/api/print`,
+      {
+        items
+      }
+  
     );
     if (response.status === 200) {
       console.log(response.data);
@@ -55,12 +59,13 @@ type fun = {
 };
 
 const X = ({ setStep, price, paymentType, setStatusOrder}: fun) => {
+  const { items } = useContext(MenuContext);
   const PayType =
     paymentType === "pinpad" ? PayTypes["pinpad"] : PayTypes["cash"];
 
   const getCash = async (event: MouseEvent) => {
     event.preventDefault();
-    setStatusOrder(Number(await getCas(price)))
+    setStatusOrder(Number(await getCas(items)))
     setStep(3)
   };
 
