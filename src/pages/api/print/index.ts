@@ -10,7 +10,7 @@ const handler = getHandler()
 handler.post(async (req, res) => {
   const {items} = req.body
   try {
-    await print()
+    await print(items)
     res.status(200).json('hola')
   }
   catch (err) {
