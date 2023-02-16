@@ -19,8 +19,19 @@ import {
   OrderCancelButton,
 } from "./Pay.styles";
 
-const getCas = async (price: any) => {
-  return 1
+const getCas = async () => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/api/print`
+    );
+    if (response.status === 200) {
+      console.log(response.data);
+      return 1
+    }
+    
+  } catch (error) {
+    return 0
+  }
 };
 
 const PayTypes = {
