@@ -32,7 +32,7 @@ interface IOrderedItem {
 
 const OrderedItem = (props: IOrderedItem) => {
   const { item } = props;
-  const { menuName, price, img, setImg, setType } = item;
+  const { menuName, price, img, setImg, setType, modifiers } = item;
   const getPrice = () => {
     switch (setType) {
       case "largeSet":
@@ -51,6 +51,17 @@ const OrderedItem = (props: IOrderedItem) => {
         <MdSpanBlack>
           {menuName} {setType === "largeSet" && "largeset"}
           {setType === "set" && "set"}
+          <br />
+          <SmSpanBoldGray>
+            {modifiers  && "Con : "}
+
+            {modifiers?.map((modifier, idx) => (
+              <SmSpanLightBlack key={idx}>
+                {modifier}
+                {idx !== modifiers.length - 1 && ", "}
+              </SmSpanLightBlack>
+            ))}
+          </SmSpanBoldGray>
         </MdSpanBlack>
         <MdSpanPrimary>S/. {menuPrice}</MdSpanPrimary>
         <OrderedItemImg

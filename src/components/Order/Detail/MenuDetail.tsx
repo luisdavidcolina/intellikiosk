@@ -1,9 +1,13 @@
-import React, {useContext} from 'react';
-import styled from 'styled-components';
-import { MdSpanWhite, SmSpanBlack, SmSpanPrimary, XsSpanWhite } from '@/components/StyledText';
+import React, { useContext } from "react";
+import styled from "styled-components";
+import {
+  MdSpanWhite,
+  SmSpanBlack,
+  SmSpanPrimary,
+  XsSpanWhite,
+} from "@/components/StyledText";
 // import { menuTabItems, menuList } from '@/data/menu';
-import { MenuContext, IItem } from '@/data/context';
-
+import { MenuContext, IItem } from "@/data/context";
 
 const MenuWrapper = styled.div`
   display: flex;
@@ -38,7 +42,7 @@ const MenuIntro = styled.div`
   justify-content: space-between;
 `;
 const MenuSub = styled.div`
-  height: 32.81vh;
+  height: 22.81vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,12 +74,14 @@ interface ISubmenu {
 }
 
 const SubMenu = (props: ISubmenu) => {
-  const {item} = props;
-  return <SubMenuWrapper>
-    <SubMenuImg src={item?.img}/>
-    <SmSpanBlack>{item?.menuName}</SmSpanBlack>
-  </SubMenuWrapper>;
-}
+  const { item } = props;
+  return (
+    <SubMenuWrapper>
+      <SubMenuImg src={item?.img} />
+      <SmSpanBlack>{item?.menuName}</SmSpanBlack>
+    </SubMenuWrapper>
+  );
+};
 const MenuPrice = styled.div`
   height: 5.21vh;
   padding: 0 65px;
@@ -124,59 +130,147 @@ const StepLabelNo = styled.div`
 `;
 
 const MenuDetail = () => {
-  const {item, setItem, items, setItems} = useContext(MenuContext);
+  const { item, setItem, items, setItems } = useContext(MenuContext);
   const onBackClicked = () => {
     setItem(null);
-  }
+  };
   const addToCart = () => {
     if (item) {
       setItems(items.concat(item));
       setItem(null);
     }
-  }
+  };
   return (
     <>
-     <MenuWrapper>
+      <MenuWrapper>
         <MenuNav>
           <BackBtn>
-            <SmSpanBlack onClick={onBackClicked}>{'<'} Atras</SmSpanBlack>
+            <SmSpanBlack onClick={onBackClicked}>{"<"} Atras</SmSpanBlack>
           </BackBtn>
           <SmSpanBlack>Confirmar selección</SmSpanBlack>
           <BlankDiv />
         </MenuNav>
         <MenuIntro>
           <StepLabel>
-            <StepLabelNo><XsSpanWhite>1</XsSpanWhite></StepLabelNo>
+            <StepLabelNo>
+              <XsSpanWhite>1</XsSpanWhite>
+            </StepLabelNo>
             <SmSpanBlack>Menu seleccionado</SmSpanBlack>
           </StepLabel>
           <SmSpanBlack>
-            {item?.setType === 'largeSet' && `${item?.menuName} large set ${parseInt(item?.price || '', 10) + 2700} $` }
-            {item?.setType === 'set' && `${item?.menuName} set ${parseInt(item?.price || '', 10) + 2000} $` }
-            {item?.setType === 'normal' && `${item?.menuName} ${item?.price}$` }
+            {item?.setType === "largeSet" &&
+              `${item?.menuName} large set ${
+                parseInt(item?.price || "", 10) + 2700
+              } $`}
+            {item?.setType === "set" &&
+              `${item?.menuName} set ${
+                parseInt(item?.price || "", 10) + 2000
+              } $`}
+            {item?.setType === "normal" && `${item?.menuName} ${item?.price}$`}
           </SmSpanBlack>
         </MenuIntro>
         <MenuSub>
           <SubMenu item={item}></SubMenu>
-          {item?.setType === 'largeSet' && <>
-            <SubMenu item={{img: 'menu/sidemenu_8.png', menuName: 'French Fries (L)'}}></SubMenu>
-            <SubMenu item={{img: 'menu/drink_4.png', menuName: 'Coca-Cola (L)'}}></SubMenu>
-          </>}
-          {item?.setType === 'set' && <>
-            <SubMenu item={{img: 'menu/sidemenu_8.png', menuName: 'French Fries (R)'}}></SubMenu>
-            <SubMenu item={{img: 'menu/drink_4.png', menuName: 'Coca-Cola (R)'}}></SubMenu>
-          </>}
+          {item?.setType === "largeSet" && (
+            <>
+              <SubMenu
+                item={{
+                  img: "menu/sidemenu_8.png",
+                  menuName: "French Fries (L)",
+                }}
+              ></SubMenu>
+              <SubMenu
+                item={{ img: "menu/drink_4.png", menuName: "Coca-Cola (L)" }}
+              ></SubMenu>
+            </>
+          )}
+          {item?.setType === "set" && (
+            <>
+              <SubMenu
+                item={{
+                  img: "menu/sidemenu_8.png",
+                  menuName: "French Fries (R)",
+                }}
+              ></SubMenu>
+              <SubMenu
+                item={{ img: "menu/drink_4.png", menuName: "Coca-Cola (R)" }}
+              ></SubMenu>
+            </>
+          )}
         </MenuSub>
+        {item?.type === "foods" && (
+          <div style={{ margin: "auto", padding: "0 0 20px 0" }}>
+            <SmSpanBlack>Cremas</SmSpanBlack>
+            <label
+              style={{ marginLeft: "20px" }}
+              onClick={() => {
+                if (item) {
+                  setItem({
+                    ...item,
+                    modifiers: item.modifiers
+                      ? item.modifiers.concat("Ketchup")
+                      : ["Ketchup"],
+                  });
+                  console.log(item);
+                }
+              }}
+            >
+              <input type="checkbox" value="val" name="name" />
+              Ketchup
+            </label>
+            <label
+              style={{ marginLeft: "10px" }}
+              onClick={() => {
+                if (item) {
+                  setItem({
+                    ...item,
+                    modifiers: item.modifiers
+                      ? item.modifiers.concat("Mayonesa")
+                      : ["Mayonesa"],
+                  });
+                  console.log(item);
+                }
+              }}
+            >
+              <input type="checkbox" value="val" name="name2" />
+              Mayonesa
+            </label>
+            <label
+              style={{ marginLeft: "10px" }}
+              onClick={() => {
+                if (item) {
+                  setItem({
+                    ...item,
+                    modifiers: item.modifiers
+                      ? item.modifiers.concat("Mostaza")
+                      : ["Mostaza"],
+                  });
+                  console.log(item);
+                }
+              }}
+            >
+              <input type="checkbox" value="val" name="name3" />
+              Mostaza
+            </label>
+          </div>
+        )}
+
         <MenuPrice>
           <StepLabel>
-            <StepLabelNo><XsSpanWhite>2</XsSpanWhite></StepLabelNo>
+            <StepLabelNo>
+              <XsSpanWhite>2</XsSpanWhite>
+            </StepLabelNo>
             <SmSpanBlack>Monto a ordenar</SmSpanBlack>
             <SmSpanPrimary>
-              {item?.setType === 'largeSet' && `${parseInt(item?.price || '', 10) + 2700} $` }
-              {item?.setType === 'set' && `${parseInt(item?.price || '', 10) + 2000} $` }
-              {item?.setType === 'normal' && `${item?.price}$` }
+              {item?.setType === "largeSet" &&
+                `${parseInt(item?.price || "", 10) + 2700} $`}
+              {item?.setType === "set" &&
+                `${parseInt(item?.price || "", 10) + 2000} $`}
+              {item?.setType === "normal" && `${item?.price}$`}
             </SmSpanPrimary>
           </StepLabel>
         </MenuPrice>
+
         <MenuButtonWrapper>
           <MenuButton onClick={addToCart}>
             <MdSpanWhite>Agregar al carrito</MdSpanWhite>
@@ -185,6 +279,6 @@ const MenuDetail = () => {
       </MenuWrapper>
     </>
   );
-}
+};
 
 export default MenuDetail;

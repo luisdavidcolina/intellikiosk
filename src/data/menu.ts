@@ -79,12 +79,14 @@ const menuList = [
   },
 ];
 
+const menuModifiers = ["Con Ketchup", "Con Mostaza", "Con Mayonesa"];
+
 const extraPriceMap = {
   setPrice: 2000,
   largeSetPrice: 2700,
 };
 
-export { menuTabItems, menuList, extraPriceMap };
+export { menuTabItems, menuList, extraPriceMap, menuModifiers };
 /*
 const menuTabItems = [
   {type: 'special', title: 'special', itemLength: 6},

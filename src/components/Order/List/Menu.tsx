@@ -106,6 +106,7 @@ const MenuList = (props: IMenuList) => {
           <SmSpanBlack margin="10px">{menu?.menuName}</SmSpanBlack>
           {menu?.menuInfo && <XsSpanLightGray margin="0 10px 10px">{menu?.menuInfo}</XsSpanLightGray>}
           <SmSpanPrimary>S/. {menu?.price}</SmSpanPrimary>
+          
         </MenuListItem>
       )}
     </MenuListWrapper>
