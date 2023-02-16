@@ -7,12 +7,14 @@ const menuTabItems = [
 
 const menuList = [
   {
+    code: "1231",
     type: "foods",
     menuName: "Enrrollado Árabe",
     menuInfo: "Enrrollado Árabe Vegetariano El Cedro 200gr",
     price: "6.9",
   },
   {
+    code: "1232",
     type: "foods",
     menuName: "Hot Dog XL Alemán",
     menuInfo:
@@ -20,6 +22,7 @@ const menuList = [
     price: "26.9",
   },
   {
+    code: "1234",
     type: "foods",
     menuName: "Burger BBQ",
     menuInfo:
@@ -27,52 +30,61 @@ const menuList = [
     price: "20.9",
   },
   {
+    code: "1235",
     type: "snack",
     menuName: "Papas Inka Chips",
     menuInfo: "Papas Inka Chips Saladas 142gr.",
     price: "8.2",
   },
   {
+    code: "1236",
     type: "snack",
     menuName: "Cheetos",
     menuInfo: "Cheetos Mega Queso Bolsa 74gr.",
     price: "4.7",
   },
   {
+    code: "123",
     type: "snack",
     menuName: "Plátano Frito Inka Chips",
     menuInfo: "Plátano Frito Inka Chips Salado 100gr.",
     price: "5",
   },
   {
+    code: "1237",
     type: "licor",
     menuName: "Whisky Johnnie Walker",
     menuInfo: "Whisky Johnnie Walker Red Label 750ml.",
     price: "73.9",
   },
   {
+    code: "1238",
     type: "licor",
     menuName: "Cerveza Pilsen",
     menuInfo: "Cerveza Pilsen 12Pack Lata 355ml.",
     price: "49.9",
   },
   {
+    code: "1239",
     type: "licor",
     menuName: "Vino Rosé Santiago Queirolo",
     menuInfo: "Vino Rosé Santiago Queirolo Semi Seco Botella 750ml.",
     price: "22.9",
   },
   {
+    code: "1240",
     type: "drink",
     menuName: "Bebida Energizante Monster Energy Lata 473ml",
     price: "7.5",
   },
   {
+    code: "1241",
     type: "drink",
     menuName: "Gatorade Tropical Fruit Botella 750ml",
     price: "4.7",
   },
   {
+    code: "1242",
     type: "drink",
     menuName: "Bebida Frugos Del Valle Chicha Morada 1lt",
     price: "4.9",
