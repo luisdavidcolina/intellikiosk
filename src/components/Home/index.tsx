@@ -1,26 +1,31 @@
 import { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
+import Cart from "../Order/Cart";
 import { PageContext, MenuContext, IItem } from "@/data/context";
 import { menuTabItems, menuList } from "@/data/menu";
 
 import Advertise from "../Advertise";
 
-const HeaderArea = styled.div`
-  height: 7vh;
-`;
-
-const HomeButton = ({ num = 0, src = "", text = "" }: any) => {
+const HomeButton = ({ num = 0, src = "", text = "", onClick }: any) => {
   return (
     <div className="flex flex-col items-center justify-center  p-20">
       <div className="indicator">
         <span className="indicator-item badge indicator-start h-14 w-14 text-xl">
           {num}
         </span>
-        <button className=" rounded-2xl btn btn-lg btn-primary btn-square h-40 w-40  text-white">
+        <button
+          onClick={(e) => setTimeout(() => onClick(e), 200)}
+          className=" rounded-2xl btn btn-lg btn-primary btn-square h-40 w-40  text-white"
+        >
           <img className="h-28 w-28" src={src} />
         </button>
       </div>
-      <div className="text-xl text-center font-bold " style={{width: "120px"}}> {text}</div>
+      <div
+        className="text-xl text-center font-bold "
+        style={{ width: "120px" }}
+      >
+        {" "}
+        {text}
+      </div>
     </div>
   );
 };
@@ -77,15 +82,14 @@ const HomePage = () => {
 
   return (
     <>
-      <HeaderArea>
-        <Advertise />
-      </HeaderArea>
+      <Advertise />
       <div className="flex flex-col h-full items-center justify-center">
         <h2 className="text-4xl font-bold">¿DUDAS?</h2>
         <p className="text-3xl font-bold">Compra en 4 sencillos pasos</p>
         <div className="pt-20 grid grid-cols-2 gap-2">
           <HomeButton
             num={1}
+            onClick={handleClick}
             text="Selecciona tus productos"
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADQklEQVR4nO2a229NQRSHt9TlgVRcUhQhFRpEFFGhT/wR3v0hfSLEJWmliTQeJOJBaaQPhAgSwYNLaUPVJR4EbRNV6pK4tflkHb9T2+nep/vsPbtnu/ySnZyZzl5rvs7MOmtmjuf9118oYC3QBPQAn/TY58PAGi/rAqYDLcAI4RoV0AwvwxCX1NnPQDNQD8zUUy+AL2pzMQ4McBToBBanBWIjYXoBrCvSbj3wUm2bY/g5r3efANWJOx6wJkY0EjkIYAnQDnzQcwZYqb/VAV81zVaX6GsOcFcwj4FFLkFsYZuafBBDAetjKD8lfCMYZ1TmAl16/xGw0BXIQxndrLKNhOmsdVzPOdWdUputKt+P6XMe0C0b5n+BCxCbOqZZBeWxBQksVd2wypW4VQ9QlRTkrYxVqpxTQLuxemC2Y5AHLkAsHJq2lACyTcVOR1OrKhGEjB6SwZYSQI6oeDAmRJfe73WyPmS4RuH3G7BhIhBgE/Bd7WtiRKx7ziOWz8E+Ge+PADKQYDRu+L4Q3X2H+BxUKNyOKaCNX9a2Ioafbq0Jt9/qATC7I4DsBaZ6WRcRFvsfIf4VEOAYMKjc66TlZl4WRbTF7lcfsBE4rqg3KMCa8hAUdDisPiSZDNIAsDzLIEHJZBjgBcuYgTeF+5qyg8QADN3XZBIkrJ4i+5pUVaRjt4A7AfU3gdthdiiyr4nTuVrt/Pr12OfaUkBi+MzJmX1BvGO8hvN7ECeOxtu5DlxzZt+3B7ejmGrN1Y4wGFcgYUoCkk/NxzJOS/qAtiCYLIP06d3fQl4YTJZBTuvdjsL0OwgmyyCrfIu9LQJMNkFMSuryp4ftATC2qTrhD2leSiKpfU2b4YgjM+qi00Fy8o+KCGPHQ3sSOSreh5xcGCo6zdIWkitjZYPBJUg5YXANUg4Yfp3iv0/DeNEA4NhXnfz0puVgUmCARvloTcN+GMy0FKbVa9nf4dL2RDBXgfmO7E7xbSeuuLAZNQDkr6BfAbviHFgXjEQewk5TVniTJbu3sN1dPlQCz4ADNiWAZRP9WMDuI/l519Lom04G0TBpEAXTYSfwlOS6nIWTR8uMG4D9uqh57vspR5g+6h6kFdheVoD/8pLrByGIy5kBEzpaAAAAAElFTkSuQmCC"
           />
@@ -106,6 +110,8 @@ const HomePage = () => {
           />
         </div>
       </div>
+
+      <Cart />
     </>
   );
 };

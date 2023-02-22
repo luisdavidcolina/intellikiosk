@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
+import {PageContext, MenuContext} from '@/data/context';
 
 const ADImage = styled.div`
   width: 100%;
-  height: 100%;
+  height: 7vh;
   background-color: #010E42;
   display: flex;
   justify-content: space-between;
-
 `;
 
 const Logo = styled.img`
@@ -20,9 +20,14 @@ const getTime = () => {
 };
 
 const Advertise = () => {
+  const {setPage} = useContext(PageContext);
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    setPage("home");
+  }
   return (
     <ADImage  >
-      <Logo src='/logo.png'/>
+      <Logo onClick={handleClick} src='/logo.png'/>
       <h2 className="card-title text-white p-3">{getTime()}</h2>
     </ADImage>
   );

@@ -13,4 +13,5 @@ export const PageInnerWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  background-color: #f4f4f4;
 `;

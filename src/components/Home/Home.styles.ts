@@ -44,13 +44,3 @@ export const MainImage = styled.img`
   height: 100%;
   object-fit: cover;
 `;
-
-export const Footer = styled.footer`
-  height: 20.83vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background-color: black;
-`;
