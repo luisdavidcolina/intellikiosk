@@ -41,7 +41,7 @@ const MenuTab = (props: IMenuTab) => {
   return (
     <MenuTabWrapper>
       {menuTabItems.map((tabItem, idx) => 
-        <MenuTabItem key={idx} onClick={() => onClick(idx)} active={idx === index}>{tabItem.title}</MenuTabItem>
+        <button className="btn btn-primary" key={idx} onClick={() => onClick(idx)} active={idx === index}>{tabItem.title}</button>
       )}
     </MenuTabWrapper>
   )

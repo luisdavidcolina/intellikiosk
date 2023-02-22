@@ -7,8 +7,8 @@ import Menu from './List/Menu';
 import MenuDetail from './Detail/MenuDetail';
 import { MenuContext } from '@/data/context';
 
-const ADArea = styled.div`
-  height: 13.02vh;
+const HeaderArea = styled.div`
+  height: 6vh;
 `;
 
 const MenuArea = styled.div`
@@ -27,9 +27,9 @@ const OrderPage = () => {
   const { item } = useContext(MenuContext);
   return (
     <>
-      <ADArea>
+      <HeaderArea>
         <Advertise />
-      </ADArea>
+      </HeaderArea>
       <MenuArea>
         {!item ? <Menu /> : <MenuDetail />}
       </MenuArea>

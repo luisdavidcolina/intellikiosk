@@ -3,7 +3,7 @@ import Advertise from '../Advertise';
 import Step from './Step';
 import Footer from '../Footer';
 
-const ADArea = styled.div`
+const HeaderArea = styled.div`
   height: 13.02vh;
 `;
 
@@ -18,9 +18,9 @@ const StepArea = styled.div`
 const PaymentPage = () => {
   return (
     <>
-      <ADArea>
+      <HeaderArea>
         <Advertise />
-      </ADArea>
+      </HeaderArea>
       <StepArea>
         <Step />
       </StepArea>
