@@ -77,12 +77,12 @@ const Price = styled.span<IActivable>`
 `;
 
 const CartItemList = styled.div`
-  height: 60vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #e0e0e0;
+  background-color: #fffffff0;
 `;
 
 const CartItems = styled.div`
@@ -223,6 +223,10 @@ const Cart = () => {
       {activeCart && (
         <>
           <CartItemList>
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEXElEQVR4nO2cW4hWVRiGHxU1wQsPUTiNF6YoGFQmCeb5whLHzPAqjTEwvAjUlFQyk2oulDyAYomnCxPMAyl4GJEYJM1D4pWliKIXohOKWv521mbiw/en3T/OMO4c17fG9cCC+ffes/53vbPWt457IJFIJBKJRCKRaEg5sB0oAPXAn8Al4BtgAdAnmda0eddlXGPpDrAFeCoZ2ZDtMmm3DLK0R9dOAeuA3/T5GjA2mfhfis02W7t66tpP+twD2JFp3q8lE//lpowpv4eBP5cYVaXrvwL9kol3+Uqm7JGJlvbqmjXvUtbr3tEGdx5R+iq2lXYc1xvpfTurh7ZnXgmg1yUW/7aqOd9UzWtq6DJLBu58iBpbFU8CdTK7fWgxsXJatfCF0EJiZYsMnBJaSKx8IAOXhhYSK+Nl4P7QQmKlV2aefBE4AVQDXwDLgfnAVM1ahmjg3TW0aE+0ycxi7jfd0Dz7W83BzfTFwEygEngVGAiUtfZe/ogMeRN4UQsNZsBsYBGwAdil587mNNyGS1fV6x/UnHy1ppUzgEnAaOA5jWc7EhFrVEgryP1gTfkZYKhq2zTgI2CFauNuhYRa4HYO03/X71ot/1p5rtB3TNN3DpUGq+XBmC7Ba1vwO9oCTwD9geHAROAdYCGwEtgM1AAnZdpfOQy35bqnCcBIpwsLXTTHf0mjhanq1JarNlZnarjp/zGU0G4S8ItqSmy8Lf3bQoq4LBFBmsD/ZKO0WygKxj6JmNCMZw8DhwJcb4wL0v48AflUIj5sxrOHNBR52NfvRXlm1b0dAamUEFtPjIlJmZX4oAyQEBvoxsRq6Z4XWshjGuze1s+xxMAfZKDN090srg6IJAZ21xTRBtAdcMBWGWjxMAYmSO8BnLBAgpYQB8uk92Oc/UX3RRIDj0uvreK4oLcE2X6x9xjYOdPp2c9uFlcLMtECtGdGS+d3OOOYhI3AN5943Qxb14yJuYcYeEA63Z0wmylhtkrtNQZ21NivzmOoGSUDbf/DK0Ok8Xsc8rjEFdSpeOR9afwcp9RKoO0Ze4yBxXOPb+CU/RJo+xDeYmAXbT3UeT4sv1QG2rkZb8yNIEbzlkR+iS9e1uF40zYOxwyUSFtrC41N0wZpWFXcnP8M53TSYaN6Z+mOzt5EsfV6xoFh9Wqy53Vq4lkifPNpcmghsbJQBlqTSeTgdRlog9ZEDvrIQDu1mshBW434zcR0pDcnx2XgsFQF87FBBtpByEQO3m3G4mqiCQbLwNrQJ59ipR1wTibaJk4iB2OAv7X+tkkLDVG9guCBSr1yUO8sRUVvYJVetKlzYF50BhYZJvF/AO/pP4FYmqNrecaNw1sgT7dUq0BW0MaW2/fmPOD+IPN0yxUVyGpI6Q5ame5dcZCnWwolhc3uoBULW3CQp1tqVCCLT6XM070aB3m6pSIT8OeqhpSpoMUdswoHebqmqomhRZWjPF1ToWZ1S6nmAdSSlsgzkUgkEolEglbAP5lTX8ghkRRPAAAAAElFTkSuQmCC"
+              className="w-40 h-40 p-5 mt-20 mx-auto"
+            ></img>
             <CartItems>
               {items.length === 0 ? (
                 <CartItemsEmptyWrapper>
@@ -238,22 +242,21 @@ const Cart = () => {
                 </CartItemsWrapper>
               )}
             </CartItems>
-            <div className="flex w-full justify-between text-4xl font-bold px-12 pb-5">
+            <div className="flex w-full justify-between text-4xl text-black font-bold px-12 pb-5">
               <div>Total</div>
               <div className="flex">S/. {price}</div>
             </div>
             <div className="flex w-full justify-between text-4xl font-bold px-12 pb-5">
               <button
-                className="btn btn-circle btn-lg btn-primary gap-2 text-2xl text-white"
+                className="btn btn-circle btn-lg btn-secondary gap-2 text-2xl"
                 onClick={() => {
                   setActiveCart(!activeCart);
-                  
                 }}
               >
                 B
               </button>
               <button
-                className="btn btn-lg btn-primary gap-2 text-2xl text-white"
+                className="btn btn-lg btn-secondary gap-2 text-2xl"
                 onClick={setPaymentOrder}
               >
                 Comprar
@@ -277,18 +280,16 @@ const Cart = () => {
         </>
       )}
       {!activeCart && (
-        <div
-          className="fixed bottom-0 z-50 p-4"
-          
-        >
+        <div className="fixed bottom-0 z-50 p-4">
           <div className="indicator">
             <span className="indicator-item badge  h-10 w-10 text-xl ">
               {items.length}
             </span>
-            <button className="btn h-20 w-20 btn-lg btn-primary btn-circle"
-            onClick={() => {
-              setActiveCart(!activeCart);
-            }}
+            <button
+              className="btn h-20 w-20 btn-lg btn-secondary btn-circle"
+              onClick={() => {
+                setActiveCart(!activeCart);
+              }}
             >
               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA6klEQVR4nN2UvwqBURiHD4MkBsmmTC6AXIQ/ZXIr7kGuQVFyCTbFbjRbMMhgIgw8klcR3+c9PvLnNz+/9zmd93SM+YtwncY7BPsLwQaIv1xyDNDBe3rGKUDxBYKhm8APjAQsOIK3vQgwk17pEVwRsGMhqEqnr4GjwEoWn1LwiQs+qz1RU05UU7BtYVuq4VLKSGkBhFy4NLAD1kBSLZDywOLlVG2Hx4C5YvBarihoK6jLgC7gsyorhoflu9hqXtEzggCw5IkYC0lZuYOrmK8Jp09vCkyAvFfuXvFYOGfslfuIIC/lMZDzyv12DiLMmTXG+gXzAAAAAElFTkSuQmCC" />
             </button>

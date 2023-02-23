@@ -12,7 +12,7 @@ const Index = () => {
   const [orderId, setOrderId] = useState(0);
   const [statusOrder, setStatusOrder] = useState(0);
   const [paymentType, setPaymentType] = useState('');
-  const [pageState, setPageState] = useState('home');
+  const [pageState, setPageState] = useState('order');
   const [activateModal, setActivateModal] = useState(false);
   const [modalState, setModalState] = useState('');
   const [modalProps, setModalProps] = useState({});

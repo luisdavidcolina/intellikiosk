@@ -23,7 +23,7 @@ const Advertise = () => {
   const {setPage} = useContext(PageContext);
   const handleClick = (e: any) => {
     e.preventDefault();
-    setPage("home");
+    setPage("order");
   }
   return (
     <ADImage  >

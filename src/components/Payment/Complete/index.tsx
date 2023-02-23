@@ -54,7 +54,7 @@ const Complete = () => {
         <CompleteOrderImage
           onClick={() => {
             setItems([]);
-            setPage("home");
+            setPage("order");
           }}
           src={status.src}
         />
