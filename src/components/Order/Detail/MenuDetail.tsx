@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {
   MdSpanWhite,
   SmSpanBlack,
-  SmSpanPrimary,
   XsSpanWhite,
 } from "@/components/StyledText";
 // import { menuTabItems, menuList } from '@/data/menu';
@@ -261,13 +260,13 @@ const MenuDetail = () => {
               <XsSpanWhite>2</XsSpanWhite>
             </StepLabelNo>
             <SmSpanBlack>Monto a ordenar</SmSpanBlack>
-            <SmSpanPrimary>
+            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
               {item?.setType === "largeSet" &&
                 `${parseInt(item?.price || "", 10) + 2700} $`}
               {item?.setType === "set" &&
                 `${parseInt(item?.price || "", 10) + 2000} $`}
               {item?.setType === "normal" && `${item?.price}$`}
-            </SmSpanPrimary>
+            </span>
           </StepLabel>
         </MenuPrice>
 

@@ -3,7 +3,7 @@ const menuTabItems = [
   { type: "snack", title: "Snacks", itemLength: 12 },
   { type: "licor", title: "Galletas", itemLength: 12 },
   { type: "drink", title: "Bebidas", itemLength: 12 },
-  { type: "alcoholicas", title: "Lictor", itemLength: 12 },
+  { type: "alcoholicas", title: "Licor", itemLength: 12 },
   { type: "cigarrillos", title: "Cigarrillos", itemLength: 12 },
 ];
 

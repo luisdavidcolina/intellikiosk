@@ -4,9 +4,16 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
+
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+
+  * {
+    font-family: 'Montserrat', sans-serif !important;
+  }
 `;
 
 const PageWrapper = styled.div`
+  font-family: 
   position: relative;
   padding: 0;
   margin: 0;

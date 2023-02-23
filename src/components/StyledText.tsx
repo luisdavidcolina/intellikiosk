@@ -103,17 +103,6 @@ export const SmSpanWhite = styled.span<ISpan>`
   }
 `;
 
-export const SmSpanPrimary = styled.span<ISpan>`
-  margin: ${props => props.margin};
-  font-family: S-CoreDream-7;
-  font-size: 30px;
-  font-weight: 800;
-  color: #de0000;
-  @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    font-size: 20px;
-  }
-`;
-
 export const SmSpanLightGray = styled.span<ISpan>`
   margin: ${props => props.margin};
   font-family: S-CoreDream-6;

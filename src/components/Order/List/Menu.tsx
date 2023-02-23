@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   SmSpanBlack,
-  SmSpanPrimary,
   XsSpanLightGray,
 } from "@/components/StyledText";
 import { menuTabItems, menuList } from "@/data/menu";
@@ -52,7 +51,7 @@ interface IFlexable {
 }
 
 const MenuListWrapper = styled.div<IFlexable>`
-  height: 48.44vh;
+  gap: 1rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: ${(props) =>
@@ -101,16 +100,21 @@ const MenuList = (props: IMenuList) => {
     setMenuLength(menuTabItems[index].itemLength);
   }, [index]);
   return (
-    <div className="flex flex-col">
-      <button
-        className="btn btn-primary m-2 mx-20 text-white w-30  text-2xl"
-        onClick={() => setMenuTabIndex(99)}
-      >
-        Volver
-      </button>
-      <MenuListWrapper size={menuLength}>
+    <div className="flex flex-col m-3">
+      <div className="flex items-center gap-3 grow mb-3">
+        <span
+          className="btn btn-primary m-2 text-white rounded-full"
+          onClick={() => setMenuTabIndex(99)}
+        >
+          -
+        </span>
+        <h1 className="text-4xl">
+          Selecciona un producto
+        </h1>
+      </div>
+      <MenuListWrapper className="grid" size={menuLength}>
         {menus.map((menu, idx) => (
-          <MenuListItem
+          <div
             key={idx}
             onClick={() =>
               onMenuClick(
@@ -119,26 +123,26 @@ const MenuList = (props: IMenuList) => {
                   setImg: `/images/menu/${menu?.code}.png`,
                 })
               )
-            }
+            }                        
+            className="max-w-sm btn-primary rounded overflow-hidden p-3"
           >
             <MenuListImage
-              src={`/images/menu/${menu?.code}.png`}
+              src={`/images/menu/${menu.code}.png`}
+              className="-m-3"
               size={menuLength}
             />
-            <SmSpanBlack margin="10px">{menu?.menuName}</SmSpanBlack>
-            {menu?.menuInfo && (
-              <XsSpanLightGray margin="0 10px 10px">
-                {menu?.menuInfo}
-              </XsSpanLightGray>
-            )}
-            <SmSpanPrimary>S/. {menu?.price}</SmSpanPrimary>
-          </MenuListItem>
+            <div className="px-2 py-4">
+              <div className="font-bold text-xl mb-2">{menu.menuName}</div>
+              {menu.menuInfo && <p className="text-gray-700 text-base">{menu.menuInfo}</p>}
+            </div>
+              <span className="inline-block bg-gray-200 rounded-full px-2 text-lg text-sm font-semibold text-gray-700">S/. {menu.price}</span>
+          </div>
         ))}
       </MenuListWrapper>
     </div>
-  );
-};
-
+    );
+  };
+  
 const Menu = () => {
   const [menuTabIndex, setMenuTabIndex] = useState(99);
   const selectMenuTab = (index: number) => {
