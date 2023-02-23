@@ -103,10 +103,10 @@ const MenuList = (props: IMenuList) => {
     <div className="flex flex-col m-3">
       <div className="flex items-center gap-3 grow mb-3">
         <span
-          className="btn btn-primary m-2 text-white rounded-full"
+          className="btn btn-secondary m-2 text-white rounded-full"
           onClick={() => setMenuTabIndex(99)}
         >
-          -
+          {"<"} Atras
         </span>
         <h1 className="text-4xl">
           Selecciona un producto
