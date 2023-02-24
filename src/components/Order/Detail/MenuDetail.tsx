@@ -7,7 +7,7 @@ import { MenuContext, IItem } from "@/data/context";
 const MenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 58.85vh;
+  height: 100%;
 `;
 
 const MenuNav = styled.div`
