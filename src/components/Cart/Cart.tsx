@@ -82,7 +82,7 @@ const CartItem = (props: ICartItem) => {
   };
   const menuPrice = getPrice();
   return (
-    <div className="card w-full bg-base-100 p-5 shadow-xl mb-2">
+    <div className="card w-full bg-base-100 p-5 shadow-2xl  mb-2">
       <div className="flex w-full justify-between text-2xl font-bold">
         <div>{menuName}</div>
         <div className="flex w-[30vw]">
@@ -137,8 +137,8 @@ const Cart = () => {
     <>
       <CartItemList>
         {step === 0 && (
-          <CartItems>
-            <div className="flex flex-col h-full w-full items-center">
+          <div className=" h-full w-full flex flex-col justify-center">
+            <div className="flex flex-col h-full w-full items-center justify-center">
               <h2 className="text-4xl font-bold">Escanea los códigos</h2>
 
               <img
@@ -149,31 +149,31 @@ const Cart = () => {
                 className="btn btn-primary mt-6 rounded-2xl btn btn-lg "
                 onClick={() => setPage("order")}
               >
-                O selecciona un productos
+                O selecciona tus productos
               </button>
             </div>
             {items.length === 0 ? (
               <></>
             ) : (
-              <CartItemsWrapper>
+              <div className="w-full flex flex-col px-10">
                 {items.map((item, idx) => (
                   <CartItem key={idx} idx={idx} item={item} />
                 ))}
-              </CartItemsWrapper>
+              </div>
             )}{" "}
-            <div className="flex w-full justify-between text-4xl text-black font-bold px-12 pb-5">
+            <div className="flex w-full justify-between text-4xl text-black font-bold px-12 py-10">
               <div>Total</div>
               <div className="flex">S/. {price}</div>
             </div>
-          </CartItems>
+          </div>
         )}
         {step === 1 && (
-          <div className="flex flex-col items-center mb-40">
+          <div className="flex flex-col items-center mb-40 h-full flex flex-col justify-center">
             <img
               className="h-40 w-40"
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEaElEQVR4nO1aSWgUQRR9iiYuMS4HFxQFFcQYjQmYmIAQVBDjRRCiHjx5cQHx5IoKelAD0YzGxEtOCi4nDeKCyyHBJUFciAYE40GjEsEtETUYHfnwauiMM93V41R1HPtBMTVTy/v/z+/q+r8KCBEiRIgQVlAAIAKgDcBXAJ8BPAFQA2A2MhjZAOoB/AQQTVKk7TiALGSg8reo5Dd6QDGAHAAjWD8GoJd9bmSaEeqoWCeA+R6PRyf7iidkBObStb9TQS8Usm8fgDnIAET4j4qL6+I4xxxBBqCdypT4GLOQY+Tt8M+jh8rIgqeLHI6Rsf88oiy2xg04REMDIPSAqEXPsY6rLltb00W4A8XIAJVXRbbSgWEahXgZgAu/4vxTESCKKMTDAAzwiPPL1jkwLHVEb7YNcJPzv+CGqRvAAwD7AYyHJaymEOcsG2AFEynJ1oUPACphAZtIKOGuLQOsjEuqHOU/LgtyOYBG/t7HP8go9pDsQNzvJQ4B/QRBXpgA4D3nfc7PvQn67XJ4wkQYRA2JtvL7MACHaX1lgD7+Jm1/i92cs5GcUYbbiXCJ7ftgEKdIso7f7zqUPsSijHEnDXz3OVc5OaV+OknfxWyXhdEYLpOkgt8TuX1xGteDj47QuoL1K0n65rL9EwyilSQL+D2ZoukygHMetc60avY3gg4STA/AADNY79DsbwSfSDA6AAOM0XDxtBkgG8AWAPcAfGGRRe0XgB8ABnkQ6ghyO8CAqtlNsMmOfXei0qWhqI4BglLeVbZsh/IS8a0CMIouv5m/t/tQQscAtuHKu8Wh/Li4tkUJ3KfZRfmmvxHEIFx5W9go/3yiPbm0XbAhiEG48qqcvrh9PNazrcGGIAbhyuvWuJ1tVTYESXLmGOHpkXozqXsG+enijbo0VrFtmw+ylAWJW5jrPO4ZSPxRq3nEnrIBGtgmj4ItAzjvGfTywLWYidEcninW8nQ5yqxRlikDXGSbLIa2DFDPPq8BzPPIVereM+jHm0qOX16HNgzgvGegkwgtpJfI45Cnwzs8xR2U2+TpNEBNCjdHajmmWod3EitvNSd/x/6SprJhgKdsL03hnkGbDm9egq1tMgyma0kwNAR2DKD2JJLo8HvPoFuHt5QVSWt5YayBbIuXAbrjQm8d5PoxwHKPFJMTMzWSEaYegTIfc5b6eQTWsnJGY2KVjpJYAZYXwRM+5jyhcdkqxruRFXnXekElJCUpassA+Vx3evme90KR39fgTlYOakyuUtKSFofFjZB6rb3xMEIRN0tu5wZ/8B5iZYeGsOpQQtzSpgGyeBCrtsK1fM5zGLGW0e3VldvrAIbq8p5kZYOGsAfYV47GYDkYyuJmqM8jGIpoKN+P9ywra3zc/ZXDUdsGUJjDxa2Ne4Qe1qt97k5jvNdYWaYx6Dz7VgZogLTztvg4zVUh6RITglhGjPcZK7M0Bj1m3wITglhGjLfLR3CjYu0pJgSxjBivyqL8rwVuOf1ML00BeF6IECFCYMDgN9qnDjxSbZHEAAAAAElFTkSuQmCC"
             ></img>
-            <h2 className="text-3xl font-bold text-secondary">
+            <h2 className="text-3xl font-bold text-primary">
               ¿Necesitas bolsas?
             </h2>
             <div className="flex mt-5 items-center">
@@ -185,7 +185,7 @@ const Cart = () => {
               >
                 -
               </button>
-              <h2 className="mx-10 font-bold text-5xl text-secondary">
+              <h2 className="mx-10 font-bold text-5xl text-primary">
                 {bagsQuantity}
               </h2>
               <button
@@ -200,11 +200,11 @@ const Cart = () => {
           </div>
         )}
         {step === 2 && (
-          <div className="flex flex-col items-center mb-40">
-            <h2 className="text-3xl font-bold text-secondary">
+          <div className="flex flex-col items-center mb-40  h-full flex flex-col justify-center">
+            <h2 className="text-3xl font-bold text-primary">
               Ingresa tu documento de identidad
             </h2>
-            <div className="flex mt-5 items-center text-2xl font-bold text-secondary">
+            <div className="flex mt-5 items-center text-2xl font-bold text-primary">
               <input
                 type="radio"
                 name="radio-3"
@@ -311,8 +311,8 @@ const Cart = () => {
           </div>
         )}
         {step === 3 && (
-          <div className="flex flex-col items-center mb-40">
-            <h2 className="text-3xl font-bold text-secondary">
+          <div className="flex flex-col items-center mb-40  h-full flex flex-col justify-center">
+            <h2 className="text-3xl font-bold text-primary">
               Elige tu método de pago
             </h2>
             <div className="pt-20 grid grid-cols-2 gap-2">
@@ -349,9 +349,9 @@ const Cart = () => {
               setStatusOrder(Number(await getCas(items)));
               setStep(5);
             }}
-            className="flex flex-col items-center mb-40"
+            className="flex flex-col items-center mb-40  h-full flex flex-col justify-center"
           >
-            <h2 className="text-3xl font-bold text-secondary">
+            <h2 className="text-3xl font-bold text-primary">
               Sigue las instrucciones del terminal
             </h2>
             <img
@@ -368,16 +368,16 @@ const Cart = () => {
               setStep(0);
               setItems([]);
             }}
-            className="flex flex-col items-center mb-40"
+            className="flex flex-col items-center mb-40  h-full flex flex-col justify-center"
           >
             <img
               className="h-40 w-40 mb-10"
               src="data:image/png;base64,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"
             ></img>
-            <h2 className="text-3xl font-bold text-secondary">
+            <h2 className="text-3xl font-bold text-primary">
               Muchas gracias por tu compra
             </h2>
-            <h2 className="text-3xl font-bold text-secondary">Vuelve Pronto</h2>
+            <h2 className="text-3xl font-bold text-primary">Vuelve Pronto</h2>
           </div>
         )}
 
@@ -402,7 +402,7 @@ const Cart = () => {
                 );
             }}
           >
-            B
+            Regresar
           </button>
           <button
             className="btn btn-lg btn-secondary gap-2 text-2xl"
@@ -422,7 +422,7 @@ const Cart = () => {
               )
             }
           >
-            Comprar
+            Continuar
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -431,9 +431,9 @@ const Cart = () => {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
               />
             </svg>

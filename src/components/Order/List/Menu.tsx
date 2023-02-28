@@ -109,7 +109,7 @@ const MenuList = (props: IMenuList) => {
                 })
               )
             }
-            className="max-w-sm btn-primary rounded overflow-hidden p-3"
+            className="max-w-sm btn-primary rounded rounded-2xl overflow-hidden p-3"
           >
             <MenuListImage
               src={`/images/menu/${menu.code}.png`}
