@@ -1,15 +1,16 @@
 import { useContext, useEffect,  } from "react";
 
-import { MenuContext, IItem } from "@/data/context";
+import { MenuContext, IItem, PageContext } from "@/data/context";
 import { menuList } from "@/data/menu";
 
 const Read = () => {
-  const { items, setItems } = useContext(MenuContext);
-
+  const { items, setItems,  } = useContext(MenuContext);
+  const { setPage } = useContext(PageContext);
   const addToCart = (item: IItem) => {
     if (item) {
       setItems([...items, item]);
       items.push(item);
+      setPage('cart')
     }
   };
 
