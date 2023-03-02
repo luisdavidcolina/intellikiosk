@@ -18,6 +18,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             type="text/css"
           />
+          
         </Head>
         <body>
           <Main />

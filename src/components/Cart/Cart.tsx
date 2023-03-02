@@ -367,6 +367,7 @@ const Cart = () => {
 
               setStep(0);
               setItems([]);
+              setPage('home')
             }}
             className="flex flex-col items-center mb-40  h-full flex flex-col justify-center"
           >
@@ -382,6 +383,7 @@ const Cart = () => {
         )}
 
         <div className="flex w-full justify-between text-4xl font-bold px-12 pb-5">
+        {(step !== 0 )  && (
           <button
             className="btn   btn-lg btn-secondary gap-2 text-2xl"
             onClick={() => {
@@ -404,40 +406,43 @@ const Cart = () => {
           >
             Regresar
           </button>
-          <button
-            className="btn btn-lg btn-secondary gap-2 text-2xl"
-            onClick={() =>
-              setStep(
-                step === 0
-                  ? 1
-                  : step === 1
-                  ? 2
-                  : step === 2
-                  ? 3
-                  : step === 3
-                  ? 4
-                  : step === 4
-                  ? 5
-                  : 1
-              )
-            }
-          >
-            Continuar
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        ) }{ (step === 0 ) && (<span></span>)}
+          {(step === 0 || step ===1 || step ===2)  && (
+            <button
+              className="btn btn-lg btn-secondary gap-2 text-2xl"
+              onClick={() =>
+                setStep(
+                  step === 0
+                    ? 1
+                    : step === 1
+                    ? 2
+                    : step === 2
+                    ? 3
+                    : step === 3
+                    ? 4
+                    : step === 4
+                    ? 5
+                    : 1
+                )
+              }
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              />
-            </svg>
-          </button>
+              Continuar
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                />
+              </svg>
+            </button>
+          )}
         </div>
       </CartItemList>
     </>
