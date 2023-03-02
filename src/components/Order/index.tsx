@@ -6,7 +6,7 @@ import MenuDetail from "./Detail/MenuDetail";
 import { MenuContext, PageContext } from "@/data/context";
 
 const OrderPage = () => {
-  const { item } = useContext(MenuContext);
+  const {items, item } = useContext(MenuContext);
   const { setPage } = useContext(PageContext);
   return (
     <div className="h-full w-full flex flex-col">
@@ -14,27 +14,28 @@ const OrderPage = () => {
       <Advertise />
       {!item ? <Menu /> : <MenuDetail />}
       <div className="flex w-full justify-between text-4xl font-bold px-12 pb-5">
-        <span/>
-        <button
-          className="btn btn-lg btn-secondary gap-2 text-2xl"
-          onClick={() => setPage('cart')}
-        >
-          Carrito
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+        <span />
+        <div className="indicator">
+          <span className="indicator-item badge  h-10 w-10 text-xl ">
+            {items.length}
+          </span>
+          <div
+            className={`${
+              items.length > 0
+                ? "tooltip-primary tooltip tooltip-left tooltip-open"
+                : ""
+            }`}
+            data-tip="Visualiza tus productos"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-            />
-          </svg>
-        </button>
+            <button
+              className="btn btn-lg btn-secondary gap-2 text-2xl"
+              onClick={() => setPage("cart")}
+            >
+              Carrito
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA6klEQVR4nN2UvwqBURiHD4MkBsmmTC6AXIQ/ZXIr7kGuQVFyCTbFbjRbMMhgIgw8klcR3+c9PvLnNz+/9zmd93SM+YtwncY7BPsLwQaIv1xyDNDBe3rGKUDxBYKhm8APjAQsOIK3vQgwk17pEVwRsGMhqEqnr4GjwEoWn1LwiQs+qz1RU05UU7BtYVuq4VLKSGkBhFy4NLAD1kBSLZDywOLlVG2Hx4C5YvBarihoK6jLgC7gsyorhoflu9hqXtEzggCw5IkYC0lZuYOrmK8Jp09vCkyAvFfuXvFYOGfslfuIIC/lMZDzyv12DiLMmTXG+gXzAAAAAElFTkSuQmCC" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
