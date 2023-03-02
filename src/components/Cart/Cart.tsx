@@ -31,14 +31,6 @@ const CartItemsWrapper = styled.div`
   transition: 0.2s transform;
 `;
 
-const CartItemsEmptyWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 interface ICartItem {
   item: IItem;
   idx: number;
@@ -60,7 +52,7 @@ const getCas = async (items: IItem[]) => {
 
 const CartItem = (props: ICartItem) => {
   const { item, idx } = props;
-  const { menuName, price, setType } = item;
+  const { menuName, price, setType, quantity } = item;
 
   const menu = useContext(MenuContext);
   const { items, setItems } = menu;
@@ -89,15 +81,16 @@ const CartItem = (props: ICartItem) => {
   return (
     <div className="card w-full bg-base-100 p-5 shadow-2xl  mb-2">
       <div className="flex w-full justify-between text-2xl font-bold">
-        <div>{menuName}</div>
-        <div className="flex w-[30vw]">
+        <div className="w-7/12 truncate">{menuName}</div>
+        <div className="w-1/12 justify-center text-center">{quantity}</div>
+        <div className="w-4/12 flex justify-end">
           <button
             className="btn btn-sm btn-outline btn-circle"
             onClick={onClickDelete}
           >
             -
           </button>
-          <h2 className="mx-10">S/. {menuPrice}</h2>
+          <h2 className="mx-5">S/. {menuPrice}</h2>
           <button
             className="btn btn-sm btn-primary btn-circle"
             onClick={onClickAdd}
@@ -111,8 +104,14 @@ const CartItem = (props: ICartItem) => {
 };
 
 const Cart = () => {
-  const { items, setItems, setItem, paymentType, setStatusOrder } =
-    useContext(MenuContext);
+  const {
+    items,
+    setItems,
+    setItem,
+    paymentType,
+    setPaymentType,
+    setStatusOrder,
+  } = useContext(MenuContext);
   const { setPage } = useContext(PageContext);
   const [active, setActive] = useState(false);
   const [step, setStep] = useState(0);
@@ -138,6 +137,11 @@ const Cart = () => {
     setActive(items.length !== 0);
   }, [items]);
 
+  const setPayment = (type: string) => {
+    setStep(4);
+    setPaymentType(type);
+  };
+
   const price = items.reduce((total, item) => {
     switch (item?.setType) {
       case "largeSet":
@@ -149,6 +153,19 @@ const Cart = () => {
         return total + parseInt(item?.price || "", 10);
     }
   }, 0);
+
+  const consolidateItems = (items: IItem[]) => {
+    const newArray: IItem[] = [];
+    items.forEach((item) => {
+      const index = newArray.findIndex((i) => i.menuName === item.menuName);
+      if (index === -1) {
+        newArray.push({ ...item, quantity: 1 });
+      } else {
+        newArray[index].quantity += 1;
+      }
+    });
+    return newArray;
+  };
 
   return (
     <>
@@ -173,7 +190,7 @@ const Cart = () => {
               <></>
             ) : (
               <div className="w-full flex flex-col px-10">
-                {items.map((item, idx) => (
+                {consolidateItems(items).map((item, idx) => (
                   <CartItem key={idx} idx={idx} item={item} />
                 ))}
               </div>
@@ -335,7 +352,7 @@ const Cart = () => {
             <div className="pt-20 grid grid-cols-2 gap-10">
               <span>
                 <button
-                  onClick={() => setStep(4)}
+                  onClick={()=>setPayment("card")}
                   className=" rounded-2xl btn btn-lg btn-primary btn-square h-40 w-40  text-white"
                 >
                   <img
@@ -350,7 +367,7 @@ const Cart = () => {
               <span>
                 {" "}
                 <button
-                  onClick={() => setStep(4)}
+                  onClick={()=>setPayment("cash")}
                   className=" rounded-2xl btn btn-lg btn-primary btn-square h-40 w-40  text-white"
                 >
                   <img
@@ -380,7 +397,6 @@ const Cart = () => {
                 newArray.push(...bagsArray);
                 setItems(newArray);
               }
-              console.log(newArray);
               setStatusOrder(Number(await getCas(newArray)));
               setStep(5);
               closeOrderAutomatically();
@@ -388,11 +404,16 @@ const Cart = () => {
             className="flex flex-col items-center mb-40  h-full flex flex-col justify-center"
           >
             <h2 className="text-3xl font-bold text-primary">
-              Sigue las instrucciones del terminal
+              {paymentType === "cash" && "Ingresa efectivo"}
+              {paymentType === "card" && "Ingresa la tarjeta"}
             </h2>
             <img
-              className="h-60 w-60 mt-10"
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEfUlEQVR4nO2dz4scVRDHn6JeFBRP/solnoxoDFUTAgo5iHcvK7JTb3ZREEO8aDyICPkHPOUmHgImWzWOlwiJ4mH15A/8eXCNelsQ1INBMIuSBbPyxoFM966Z7rV3uup1feDBMjtvtr797Xr9uvrNvhAa5sDC6BYgeQGjfIZRNjDKlvG2gZE/ReLjSVuwxKGn+R4g+VrBQdzam8ZfQf/M3cECk8zI2Az5t5F8Cc+9cXPQzmSY2upCA5JjQTuTa8Z04OePDEb3BuMc7p+5D0kulAz5JGgHI1+eDjoJCZmAy7KvaAj/EbRTTuuQGWhNn7mAc9dXJeA0O0GSl5HkeyTZVDRz2kTiixD5xNGjH920W32qmBVwMgOivK9/BsXv7WRKdoaMM0PBAccqpkR5qa4+g4bwxbYPNFbOElmrq89ihhSvGYsr+4MScHFlfyE2ks38DVEuCI3Hn50gNB5/doLQePzZCULj8WcnCI3Hn50gNB5/doLQePzZCULj8WcnCI3Hn50gNB5/doLQePzZCULj8WdVXISB3N+54iJE/q78Hq0NIn9bV59FQ06YMYT4xbr6xhrHC+i2bggamBVweixaXt+ktJ3fzSPcXp+fQpLf0xIhiMOF0DZVzqAkND0eHQ9fyhY5AMlayozdLnKAKL9O/f7nYMEQy+AMfer0qwuoYdwQZbghysjOEIgrj2GU1fT9ius3PrfTTWN6DaK8O7N/lFVYGj7aeP/cDMEo69VnPXyu3H98MKvPnNab7p+jIZWnoUDyTbl/eq3OZzTd3w0p4YbUxDNEfMhCH7J2nyFAfKnGGL667fOJP6x+DeJLjffP7aIONBxUNGV9p2lneq3KTG3yN2LT/bMzxDrohujCDVGGG6KM7AzxWpa+M8hrWfPE79TF1pBVp7AHXlx0Q9CrvZ4he4rXssTWNcRrWXNG3Y1Rw2R3Y2gddEN04YYoIztDvJY1Z7yWJbYyxEsnc8YNEc8QvE75pXzC+MrFGRnk1d49xmtZYmvI8lrWnFF3Y9Qw2d0YWgetGZK+n93l7SpgSr+K7Sy2behCciEHU3BZ9qX/Bz9rQxckOTWl/VQ70RYC4uN1praWG0R+ftsBOHnyRiB+IrX0c9CwKVjaxawDZnxuYlOwRNpSbvJN1jzNIPnCzLZ5hX1CSI5B5I/L+1LZbHw5aUnDlJnMcBynCXoky6UL5On/+5lYcej5r/7lKnBv6ewjoSu4IcpwQ5ThhijDDVGGG6IMN0QZbogy3BBluCHKcEOU4YYoww1RhhuiDDdEGW6IMno07Befh8jbCp6HrBWehwz4wdAVen15vPSA6oc2DXmY3roVIv85/b4jz47uDF0BFka3Y+QrpSxZbMsQJHm96RPEHEjyTmlVxxXsy6u9pdFd8zBkvMvP4tmHMMqbGPlqcZkPvxa6xqEoDwDJX+0v75FCgyg/HVgY3Ra6CA6YkOTvtk3Aa20D+8Ne6DJAK08CyW9tmwHEPx6m4cG2j4cKDi6dvgOivJJWzs/PHL4KxL8g8QcY+RltqxH/AWTe2nrfnlnZAAAAAElFTkSuQmCC"
+              className="h-44 w-44 mt-10"
+              src={
+                paymentType === "card"
+                  ? "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEfUlEQVR4nO2dz4scVRDHn6JeFBRP/solnoxoDFUTAgo5iHcvK7JTb3ZREEO8aDyICPkHPOUmHgImWzWOlwiJ4mH15A/8eXCNelsQ1INBMIuSBbPyxoFM966Z7rV3uup1feDBMjtvtr797Xr9uvrNvhAa5sDC6BYgeQGjfIZRNjDKlvG2gZE/ReLjSVuwxKGn+R4g+VrBQdzam8ZfQf/M3cECk8zI2Az5t5F8Cc+9cXPQzmSY2upCA5JjQTuTa8Z04OePDEb3BuMc7p+5D0kulAz5JGgHI1+eDjoJCZmAy7KvaAj/EbRTTuuQGWhNn7mAc9dXJeA0O0GSl5HkeyTZVDRz2kTiixD5xNGjH920W32qmBVwMgOivK9/BsXv7WRKdoaMM0PBAccqpkR5qa4+g4bwxbYPNFbOElmrq89ihhSvGYsr+4MScHFlfyE2ks38DVEuCI3Hn50gNB5/doLQePzZCULj8WcnCI3Hn50gNB5/doLQePzZCULj8WcnCI3Hn50gNB5/doLQePzZCULj8WdVXISB3N+54iJE/q78Hq0NIn9bV59FQ06YMYT4xbr6xhrHC+i2bggamBVweixaXt+ktJ3fzSPcXp+fQpLf0xIhiMOF0DZVzqAkND0eHQ9fyhY5AMlayozdLnKAKL9O/f7nYMEQy+AMfer0qwuoYdwQZbghysjOEIgrj2GU1fT9ius3PrfTTWN6DaK8O7N/lFVYGj7aeP/cDMEo69VnPXyu3H98MKvPnNab7p+jIZWnoUDyTbl/eq3OZzTd3w0p4YbUxDNEfMhCH7J2nyFAfKnGGL667fOJP6x+DeJLjffP7aIONBxUNGV9p2lneq3KTG3yN2LT/bMzxDrohujCDVGGG6KM7AzxWpa+M8hrWfPE79TF1pBVp7AHXlx0Q9CrvZ4he4rXssTWNcRrWXNG3Y1Rw2R3Y2gddEN04YYoIztDvJY1Z7yWJbYyxEsnc8YNEc8QvE75pXzC+MrFGRnk1d49xmtZYmvI8lrWnFF3Y9Qw2d0YWgetGZK+n93l7SpgSr+K7Sy2behCciEHU3BZ9qX/Bz9rQxckOTWl/VQ70RYC4uN1praWG0R+ftsBOHnyRiB+IrX0c9CwKVjaxawDZnxuYlOwRNpSbvJN1jzNIPnCzLZ5hX1CSI5B5I/L+1LZbHw5aUnDlJnMcBynCXoky6UL5On/+5lYcej5r/7lKnBv6ewjoSu4IcpwQ5ThhijDDVGGG6IMN0QZbogy3BBluCHKcEOU4YYoww1RhhuiDDdEGW6IMno07Befh8jbCp6HrBWehwz4wdAVen15vPSA6oc2DXmY3roVIv85/b4jz47uDF0BFka3Y+QrpSxZbMsQJHm96RPEHEjyTmlVxxXsy6u9pdFd8zBkvMvP4tmHMMqbGPlqcZkPvxa6xqEoDwDJX+0v75FCgyg/HVgY3Ra6CA6YkOTvtk3Aa20D+8Ne6DJAK08CyW9tmwHEPx6m4cG2j4cKDi6dvgOivJJWzs/PHL4KxL8g8QcY+RltqxH/AWTe2nrfnlnZAAAAAElFTkSuQmCC"
+                  : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAYAAADjVADoAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFmklEQVR4nO1ba4hVVRT+7qhUloZk9HCM4E5aWhlTVA5WDKU9oFCitCSil70okiJJs4eRokWWhNg4UFGjYz+0hxi9kwyMbDQbH+nYw6zQipwek6Z5ZdHa8Lm5+9xz7tl37jnD+WDDZZ39WPs7+6y91tr7AhkyZAiBvgCeA7AJwLYeUNYCuBdlYB6AQg8sV0cl4mttKCvihR5Qftf5NEclYrs2bELPwCadT0vUhtszIg4lYiEORQOABQBeS1n5Q+fzPcleAnAtyiCiAcD+BBg83+WeqEQsUNk/ANZYpUufdRZ5Vs3yI014rfXsF5W3RTWWS1S2wap7DIA9+ux5JAsTiYhLrWcLVf5d1BWxRGUbrbpP0GBjkCwM1BUsur0HIOeTiA0ku4LsRps1UFIwn17U476JGKgrwZAgrJ/tSfGTAMwFcL6n/gYA+JbIkHmc4oOIPQD2UsdCwjj4gzHKX3jscxiAHaTzAQB/xiWiQKXN40oQnAOgXfveDWC8x8/tRABLi8yhbCL+0t1htGebcKe+KVvRFs/jnAlgpjpX3oylL5xG9kaW7ArLB7gF/hHJRjSVSYQYqNsAzABwI4CjStSfqX2L7Rmusv6aSxD5RyXay4q5EsBjACYDyCeBiIsA/GQtb3m79QFtFmm9LZZc8gc/A7gvoK04dO9b4+1TQqpGxLEAdlrW2fz+QTNfxTCbJnAuoqHVMZ78viQEEWIrvBPxICki7m0fAFNINiFge9tH2/OHOnZjMAc4mfpuVaLrdccp6C5RFSLma53fSHYkKTs1oO0kR3QrzpULjVTvYpK/RYFWxYhoD2j3ECl2lcrutlZJKT9CUmurdJs27a5z1M9TnRcB9AYwRF+EyF6vFhGDAfxNyvFvMXr9EB612kbafhxQjw1ll2UnJBaqChHQlcBvs6CxvyR2XLhQE8bTLPnLIZQVj3G9Nd5/AKYjGBUnwih3P4Bn9NMQvyIIs8lQ5sm2bFX5yhLtxShfr+M9AuB0lEa3EBEV9foWjaFttSLGm+EfsYnoVE9wpGfFphbZMaQsBtDL4zh1atS3xiWiQOUTcol9YAwp2Km7TI2nvsXZe4VWXiEMEasdb0fKv1ZnEiRdFlIZ2VWOC7lk18Ef8hS3mLI3DBHjyNOzS7tmkZ6lrUp2iTMcfdWox8nR5OcAzgtYus0hvMqw6E9HmFKWq00KZSNM3D5ZXWQpXxYxltfQ6ljtyBs0OwjtKrGl+sJcGvNp0jFU0FUMxkZ8ZcmfooHstziKngmRd+hWadL/6yuc8B1ATt1Ky+h6J+J4+ozkTgXjSfIwJeFrMI0Ikk+hUhhP40i+Aj6IaKIlbZ8ombOD3Zbc+PyyEzAaSMHN3XTStc5x0iUrNRIaHTnFMOXXgGCp2kXsX1n7/CI9NQpTtuhgB9QNNuhHinQ42m6kOmsijBm2LANwa3cdSk2iyUj8wTBGTIxnMYygthK3pBpjaTJnWc9MLCH3FFzoCBGGpwIjA06jjfcqqXsX5mid/ZqkTS3yRMQN1rM36ft34YI4N+KShFNpIg849nEJ8Fw4nJyvWUgheqkzZW7S2EfygptU/m6JvjZrvVeRMhwG4A1rr17lOH2q0/ou5ChvGWRUE4l5RMBnGryVi2HU1+1IEUaR4hLkHBGzv+nUn1zuSA0+oPzEoJh9yWfxDYX4qUEdxSIubzEKRtNquAspwhRSXLbNuHiHcpdHI0V4WxWX0DcuRtDqkqxSqrBDFRePMS5aKFEs+dHUoC+9wUdj9jVYCSho+j01qAHwMNmHXTH/dsQXTS5HijCrgtmjbSHuXyUCfSie6PD416MVAVFrIjGoQlcAe1O/8tklHrWksESTvpCjfkvdc0gEajMi/kdGhOKEChm1HN2wk7sMiUdO7zl9qkd/PjFH/6ow1HO/GTJkQGQcBPFIITRPjKpAAAAAAElFTkSuQmCC"
+              }
             ></img>
           </div>
         )}

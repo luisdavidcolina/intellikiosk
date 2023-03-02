@@ -44,12 +44,12 @@ export const print = async (items: IItem[]) => {
     let total = 0;
     printer.underline(false);
 
-    items.forEach((item: any) => {
+    items.forEach((item: IItem) => {
       printer.tableCustom([
         // Prints table with custom settings (text, align, width, cols, bold)
         { text: item.menuName, align: "LEFT", width: 0.5 },
-        { text: "1", align: "CENTER", width: 0.2 },
-        { text: Number(item.price).toFixed(2), align: "RIGHT", cols: 8 },
+        { text: String(item.quantity), align: "CENTER", width: 0.2 },
+        { text: (Number(item.price)*Number(item.quantity)).toFixed(2), align: "RIGHT", cols: 8 },
       ]);
       total += Number(item.price);
     });
@@ -88,6 +88,8 @@ export const print = async (items: IItem[]) => {
     logger.error(JSON.stringify(err.message));
   }
 };
+
+
 
 export const printChit = async (items: IItem[]) => {
   try {

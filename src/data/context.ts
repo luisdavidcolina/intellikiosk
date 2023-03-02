@@ -4,6 +4,7 @@ export interface IItem {
   type?: string;
   menuName: string;
   menuInfo?: string;
+  quantity?: number;
   modifiers?: string[];
   code?: string;
   price?: string;
