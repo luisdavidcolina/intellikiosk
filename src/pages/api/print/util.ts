@@ -110,12 +110,21 @@ export const printChit = async (items: IItem[]) => {
     printer.table([`Fecha: XXX`, `Hora: ${getTime()}`]);
     printer.drawLine();
     printer.newLine();
-    items.forEach((item: any) => {
+    items.forEach((item: IItem) => {
       printer.tableCustom([
         // Prints table with custom settings (text, align, width, cols, bold)
         { text: item.menuName, align: "LEFT", width: 0.5 },
         { text: "1", align: "CENTER", width: 0.2 },
       ]);
+      if (item.modifiers !== undefined && item.modifiers.length > 0) {
+        item.modifiers.forEach((modifier) => {
+          printer.tableCustom([
+            // Prints table with custom settings (text, align, width, cols, bold)
+            { text: `  ${modifier}`, align: "LEFT", width: 0.5 },
+            { text: "1", align: "CENTER", width: 0.2 },
+          ]);
+        });
+      }
     });
     printer.drawLine();
     printer.cut();
@@ -125,7 +134,9 @@ export const printChit = async (items: IItem[]) => {
       type: "RAW",
       printer: PRINTER_CHIT_NAME,
       success: function (jobID) {
-        logger.info(`Print sent to "${PRINTER_CHIT_NAME}" - Printer Job: ${jobID}`);
+        logger.info(
+          `Print sent to "${PRINTER_CHIT_NAME}" - Printer Job: ${jobID}`
+        );
         printer.clear();
       },
       error: function (err) {

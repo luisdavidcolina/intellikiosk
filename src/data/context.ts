@@ -2,7 +2,7 @@ import {createContext} from 'react';
 
 export interface IItem {
   type?: string;
-  menuName?: string;
+  menuName: string;
   menuInfo?: string;
   modifiers?: string[];
   code?: string;

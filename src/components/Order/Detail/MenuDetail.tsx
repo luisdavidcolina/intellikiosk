@@ -180,14 +180,24 @@ const MenuDetail = () => {
                 <label
                   style={{ marginLeft: "20px" }}
                   onClick={() => {
-                    if (item) {
-                      setItem({
+                    if (!item.modifiers?.includes("Ketchup")) {
+                      const newModifiers = {
                         ...item,
                         modifiers: item.modifiers
                           ? item.modifiers.concat("Ketchup")
                           : ["Ketchup"],
-                      });
-                      console.log(item);
+                      }
+                      setItem(newModifiers);
+                      
+                    } else {
+                      const newModifiers = {
+                        ...item,
+                        modifiers: item.modifiers.filter(
+                          (modifier) => modifier !== "Ketchup"
+                        ),
+                      }
+                      setItem(newModifiers);
+                      
                     }
                   }}
                 >
@@ -197,14 +207,24 @@ const MenuDetail = () => {
                 <label
                   style={{ marginLeft: "10px" }}
                   onClick={() => {
-                    if (item) {
-                      setItem({
+                    if (!item.modifiers?.includes("mayonesa")) {
+                      const newModifiers = {
                         ...item,
                         modifiers: item.modifiers
-                          ? item.modifiers.concat("Mayonesa")
-                          : ["Mayonesa"],
-                      });
-                      console.log(item);
+                          ? item.modifiers.concat("mayonesa")
+                          : ["mayonesa"],
+                      }
+                      setItem(newModifiers);
+                      
+                    } else {
+                      const newModifiers = {
+                        ...item,
+                        modifiers: item.modifiers.filter(
+                          (modifier) => modifier !== "mayonesa"
+                        ),
+                      }
+                      setItem(newModifiers);
+                      
                     }
                   }}
                 >
@@ -214,14 +234,24 @@ const MenuDetail = () => {
                 <label
                   style={{ marginLeft: "10px" }}
                   onClick={() => {
-                    if (item) {
-                      setItem({
+                    if (!item.modifiers?.includes("mostaza")) {
+                      const newModifiers = {
                         ...item,
                         modifiers: item.modifiers
-                          ? item.modifiers.concat("Mostaza")
-                          : ["Mostaza"],
-                      });
-                      console.log(item);
+                          ? item.modifiers.concat("mostaza")
+                          : ["mostaza"],
+                      }
+                      setItem(newModifiers);
+                      
+                    } else {
+                      const newModifiers = {
+                        ...item,
+                        modifiers: item.modifiers.filter(
+                          (modifier) => modifier !== "mostaza"
+                        ),
+                      }
+                      setItem(newModifiers);
+                      
                     }
                   }}
                 >

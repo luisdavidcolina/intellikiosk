@@ -29,7 +29,7 @@ const Advertise = () => {
   return (
     <ADImage  >
       <Logo onClick={handleClick} src='/logo.png'/>
-      <h2 className="card-title text-white p-3">{getTime()}</h2>
+      <h2 className="card-title text-white p-5">{getTime()}</h2>
     </ADImage>
   );
 }

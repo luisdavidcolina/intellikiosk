@@ -69,6 +69,11 @@ const CartItem = (props: ICartItem) => {
     temp.splice(idx, 1);
     setItems(temp);
   };
+  const onClickAdd = () => {
+    const temp = Object.assign([], items);
+    temp.push(item);
+    setItems(temp);
+  };
   const getPrice = () => {
     switch (setType) {
       case "largeSet":
@@ -93,7 +98,12 @@ const CartItem = (props: ICartItem) => {
             -
           </button>
           <h2 className="mx-10">S/. {menuPrice}</h2>
-          <button className="btn btn-sm btn-primary btn-circle">+</button>
+          <button
+            className="btn btn-sm btn-primary btn-circle"
+            onClick={onClickAdd}
+          >
+            +
+          </button>
         </div>
       </div>
     </div>
@@ -109,7 +119,14 @@ const Cart = () => {
   const [bagsQuantity, setBagsQuantity] = useState(0);
   const [documentId, setDocumentId] = useState("");
 
-  const [activeCart, setActiveCart] = useState(false);
+  const closeOrderAutomatically = () => {
+    setTimeout(() => {
+      setStep(0);
+      setItem(null);
+      setItems([]);
+      setPage("home");
+    }, 5000);
+  };
 
   const clearItems = () => {
     if (active) {
@@ -316,26 +333,57 @@ const Cart = () => {
               Elige tu método de pago
             </h2>
             <div className="pt-20 grid grid-cols-2 gap-10">
-              <button
-                onClick={() => setStep(4)}
-                className=" rounded-2xl btn btn-lg btn-primary btn-square h-40 w-40  text-white"
-              >
-                <img className="h-28 w-28" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFWUlEQVR4nO2bW4hVVRjH96iZFRVFhUlmhhJ0AdOU7MHKh4wyii5ORkFYYhTVjFlNLykUmJUxU0ZgAyGZqaR0U7vgS0X0UFpaglHUdLMoIbx0sWZ+8bH/u1mzPfvsy7nts2f+sJhzvr1u33/WXuu7rON5QygPYDgwE2gHHixoMd0uNV3jyJgK7GLw4AvggigypgAHVbEHeB54rKClWzoaDgCTwmS0ANtVYR1wtFdwAMcA66XzJ8aB+3CaHvwEHOsNEpiuwB7pPtV9MF/Cl71BBmCtdL/dFbZJ+JQ3yGA6S/d2VzhECEOEVGeF4J9Ic4CNwMc5LRuA6wecHLUgBBgBvELzYF2cNVopIQ/HTOBFGXjh8mFE/Xci6qcpL8XM6aGaEILv4/waM/iTEW23RNRf61UIR6Eo/AIMqwUh42IGzishhrG1IGR0PQjRSrw7wgdZApySgZCTq06IIYEnXA1CWmPG6E5JyM5Sc6oWIdcAfTUm5K4YBV9NQYjNdXbNCDEAC5wwQZ4JOTDAP6ml6Q6cKmKW6t3emgNCtmouSzW30Q3zZYD7ckBIe8a5DxGShJB7Jez0Gr9Csp4yWVdIp9q3ucJbJNyUA0LK2SGLy9ghWQnZrPY3u8LxOqIOAhMaSUiGsTMTAkyUzqb7GeGH69WxGV/nF50QOYa7IkOnwInA585ke1LEH37OASHfp5hvkIIw7AROiOr8OOBpYD/ZkFfnrhT2aUONzzIAo4BzE8QiFuaIkOUpYiim25GVjj0AwPHAt5rMdzkgJNMpUzUAqzQReyc7BjUhwHWahB1ZZyU4Zd4qLCH4jl0QSrxTssMIMQNKFrDlTSkkIfgpiMCy2xKE+R1CngGuBV4DDoVc8T+KSMg8Df6brRRHvqiEskbI6yJopDbh7UkIkQU5pkS2vj8h3WhC8F+BvRr8Rkc+XQQF+FThhAE+h+p2xBGiI9/2pt0h+bNqMzMvhLyggTeHrNvASt0ETI7pY2ECQqxPw96ILH1rwwkBxuoVsDK+ROLq/dj7Wn79N4pCyOMadHXonQ5elRkJ+rB8ME1PCAMzdlMcud3kM3yQYHWtAP4pCiEXacD/NzngCMdjvLIMEV3AnyWIaGpCHg0HoIHbJPus1JUDGWR/qY4FX3qLRMjbGnC28wrtlmxuxIrqU7HM/DnAj1UkZE6jCflGA04IbY5flTpZnBXV5cjSEDIMeNPsjpDc4r7bwqG+uhKCbyTZcv9bl2VaNCnDgog2T4QnmIaQDHOsKyHjNFiPvl/m3GctGWABHlGdjjoRsqrcP6iqwI8uGbbp+9VaMfPLtLHIlWFRrQlRyDPoe3olfSUdcJYGe9eRjYxpszac56gFIbaX2LyCf1i5W0JVA/0JrDUp2nytNnv02cq/EYTsd+qkKfbKBjCj8ezaMiEAD2jQZV4C6IitFyy+ssb2Oa9eAFa6kbEE9Z9TfWt3OnCevps7f2YVy2lmLdeegcPtgS+l0DQvAYAd8lkm6vsktd/hNSuAo/R3rpQxw2xEio1ucolM/kavGYEf0TokT9budxrmVcFoWuw1I+h32nCuKbVU0F9g1V7sNSuA+x1CuiroZ4yMOHP/R3nNDOAe5/rlsox9WNLcsMErAvBv8gVxjOUp27bKGOuN/BloMwK41bEyO+P2E3nDbU64cIlXNAA3OQquiCIFOMmJqvcpLpJ5Q841gKuckODKsCMFXAL8oOe/Azd4RQdwhRMw7pYlO1y/UAheq4/cvE3hAVzuJK1XA+/pc68CQ4ks2kIBmBG6g2YW7SxvMAOflH2Bn5IkjVl44Gf9bQM1XNjo+eQC+Lf57hhaIV5x8R+34KvBFlIrcwAAAABJRU5ErkJggg=="  />
-              </button>
-              <button
-                onClick={() => setStep(4)}
-                className=" rounded-2xl btn btn-lg btn-primary btn-square h-40 w-40  text-white"
-              >
-                <img className="h-28 w-28" src="data:image/png;base64,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" />
-              </button> 
+              <span>
+                <button
+                  onClick={() => setStep(4)}
+                  className=" rounded-2xl btn btn-lg btn-primary btn-square h-40 w-40  text-white"
+                >
+                  <img
+                    className="h-28 w-28"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAABECAYAAAA4E5OyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFWUlEQVR4nO2bW4hVVRjH96iZFRVFhUlmhhJ0AdOU7MHKh4wyii5ORkFYYhTVjFlNLykUmJUxU0ZgAyGZqaR0U7vgS0X0UFpaglHUdLMoIbx0sWZ+8bH/u1mzPfvsy7nts2f+sJhzvr1u33/WXuu7rON5QygPYDgwE2gHHixoMd0uNV3jyJgK7GLw4AvggigypgAHVbEHeB54rKClWzoaDgCTwmS0ANtVYR1wtFdwAMcA66XzJ8aB+3CaHvwEHOsNEpiuwB7pPtV9MF/Cl71BBmCtdL/dFbZJ+JQ3yGA6S/d2VzhECEOEVGeF4J9Ic4CNwMc5LRuA6wecHLUgBBgBvELzYF2cNVopIQ/HTOBFGXjh8mFE/Xci6qcpL8XM6aGaEILv4/waM/iTEW23RNRf61UIR6Eo/AIMqwUh42IGzishhrG1IGR0PQjRSrw7wgdZApySgZCTq06IIYEnXA1CWmPG6E5JyM5Sc6oWIdcAfTUm5K4YBV9NQYjNdXbNCDEAC5wwQZ4JOTDAP6ml6Q6cKmKW6t3emgNCtmouSzW30Q3zZYD7ckBIe8a5DxGShJB7Jez0Gr9Csp4yWVdIp9q3ucJbJNyUA0LK2SGLy9ghWQnZrPY3u8LxOqIOAhMaSUiGsTMTAkyUzqb7GeGH69WxGV/nF50QOYa7IkOnwInA585ke1LEH37OASHfp5hvkIIw7AROiOr8OOBpYD/ZkFfnrhT2aUONzzIAo4BzE8QiFuaIkOUpYiim25GVjj0AwPHAt5rMdzkgJNMpUzUAqzQReyc7BjUhwHWahB1ZZyU4Zd4qLCH4jl0QSrxTssMIMQNKFrDlTSkkIfgpiMCy2xKE+R1CngGuBV4DDoVc8T+KSMg8Df6brRRHvqiEskbI6yJopDbh7UkIkQU5pkS2vj8h3WhC8F+BvRr8Rkc+XQQF+FThhAE+h+p2xBGiI9/2pt0h+bNqMzMvhLyggTeHrNvASt0ETI7pY2ECQqxPw96ILH1rwwkBxuoVsDK+ROLq/dj7Wn79N4pCyOMadHXonQ5elRkJ+rB8ME1PCAMzdlMcud3kM3yQYHWtAP4pCiEXacD/NzngCMdjvLIMEV3AnyWIaGpCHg0HoIHbJPus1JUDGWR/qY4FX3qLRMjbGnC28wrtlmxuxIrqU7HM/DnAj1UkZE6jCflGA04IbY5flTpZnBXV5cjSEDIMeNPsjpDc4r7bwqG+uhKCbyTZcv9bl2VaNCnDgog2T4QnmIaQDHOsKyHjNFiPvl/m3GctGWABHlGdjjoRsqrcP6iqwI8uGbbp+9VaMfPLtLHIlWFRrQlRyDPoe3olfSUdcJYGe9eRjYxpszac56gFIbaX2LyCf1i5W0JVA/0JrDUp2nytNnv02cq/EYTsd+qkKfbKBjCj8ezaMiEAD2jQZV4C6IitFyy+ssb2Oa9eAFa6kbEE9Z9TfWt3OnCevps7f2YVy2lmLdeegcPtgS+l0DQvAYAd8lkm6vsktd/hNSuAo/R3rpQxw2xEio1ucolM/kavGYEf0TokT9budxrmVcFoWuw1I+h32nCuKbVU0F9g1V7sNSuA+x1CuiroZ4yMOHP/R3nNDOAe5/rlsox9WNLcsMErAvBv8gVxjOUp27bKGOuN/BloMwK41bEyO+P2E3nDbU64cIlXNAA3OQquiCIFOMmJqvcpLpJ5Q841gKuckODKsCMFXAL8oOe/Azd4RQdwhRMw7pYlO1y/UAheq4/cvE3hAVzuJK1XA+/pc68CQ4ks2kIBmBG6g2YW7SxvMAOflH2Bn5IkjVl44Gf9bQM1XNjo+eQC+Lf57hhaIV5x8R+34KvBFlIrcwAAAABJRU5ErkJggg=="
+                  />
+                </button>
+                <div className="text-2xl m-1 text-center font-bold w-full text-primary">
+                  Tarjeta
+                </div>
+              </span>
+              <span>
+                {" "}
+                <button
+                  onClick={() => setStep(4)}
+                  className=" rounded-2xl btn btn-lg btn-primary btn-square h-40 w-40  text-white"
+                >
+                  <img
+                    className="h-28 w-28"
+                    src="data:image/png;base64,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"
+                  />
+                </button>
+                <div className="text-2xl m-1 text-center font-bold w-full text-primary">
+                  Efectivo
+                </div>{" "}
+              </span>
             </div>
           </div>
         )}
         {step === 4 && (
           <div
             onClick={async () => {
-              setStatusOrder(Number(await getCas(items)));
+              const newArray = [...items];
+              if (bagsQuantity > 0) {
+                const bagsArray = Array(bagsQuantity).fill({
+                  code: "999999999999",
+                  type: "bags",
+                  menuName: "Bolsa",
+                  menuInfo: "",
+                  price: "0.3",
+                });
+                newArray.push(...bagsArray);
+                setItems(newArray);
+              }
+              console.log(newArray);
+              setStatusOrder(Number(await getCas(newArray)));
               setStep(5);
+              closeOrderAutomatically();
             }}
             className="flex flex-col items-center mb-40  h-full flex flex-col justify-center"
           >
@@ -351,11 +399,9 @@ const Cart = () => {
         {step === 5 && (
           <div
             onClick={async () => {
-              setActiveCart(false);
-
               setStep(0);
               setItems([]);
-              setPage('home')
+              setPage("home");
             }}
             className="flex flex-col items-center mb-40  h-full flex flex-col justify-center"
           >
@@ -371,31 +417,32 @@ const Cart = () => {
         )}
 
         <div className="flex w-full justify-between text-4xl font-bold px-12 pb-5">
-        {(step !== 0 )  && (
-          <button
-            className="btn   btn-lg btn-secondary gap-2 text-2xl"
-            onClick={() => {
-              if (step === 0) setPage("home");
-              else
-                setStep(
-                  step === 1
-                    ? 0
-                    : step === 2
-                    ? 1
-                    : step === 3
-                    ? 2
-                    : step === 4
-                    ? 3
-                    : step === 5
-                    ? 4
-                    : 0
-                );
-            }}
-          >
-            Regresar
-          </button>
-        ) }{ (step === 0 ) && (<span></span>)}
-          {(step === 0 || step ===1 || step ===2)  && (
+          {step !== 0 && (
+            <button
+              className="btn   btn-lg btn-secondary gap-2 text-2xl"
+              onClick={() => {
+                if (step === 0) setPage("home");
+                else
+                  setStep(
+                    step === 1
+                      ? 0
+                      : step === 2
+                      ? 1
+                      : step === 3
+                      ? 2
+                      : step === 4
+                      ? 3
+                      : step === 5
+                      ? 4
+                      : 0
+                  );
+              }}
+            >
+              Regresar
+            </button>
+          )}
+          {step === 0 && <span></span>}
+          {(step === 0 || step === 1 || step === 2) && (
             <button
               className="btn btn-lg btn-secondary gap-2 text-2xl"
               disabled={items.length === 0}

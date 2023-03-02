@@ -9,6 +9,13 @@ const menuTabItems = [
 
 const menuList = [
   {
+    code: "999999999999",
+    type: "bags",
+    menuName: "Bolsa",
+    menuInfo: "",
+    price: "0.3",
+  },
+  {
     code: "123412341234",
     type: "foods",
     menuName: "Enrrollado Árabe",
