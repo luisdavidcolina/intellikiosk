@@ -410,6 +410,7 @@ const Cart = () => {
           {(step === 0 || step ===1 || step ===2)  && (
             <button
               className="btn btn-lg btn-secondary gap-2 text-2xl"
+              disabled={items.length === 0}
               onClick={() =>
                 setStep(
                   step === 0
