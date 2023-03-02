@@ -4,10 +4,11 @@ import {PageContext, MenuContext} from '@/data/context';
 
 const ADImage = styled.div`
   width: 100%;
-  height: 7vh;
-  background-color: #010E42;
+  height: 10vh;
+  background-color: #000;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const Logo = styled.img`

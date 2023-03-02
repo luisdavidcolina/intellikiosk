@@ -239,7 +239,7 @@ const MenuDetail = () => {
             </StepLabelNo>
             <h2 className="text-2xl font-bold">Monto a ordenar</h2>
             <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-2xl font-semibold text-gray-700">
-              {`S/ ${item?.price}$`}
+              {`S/ ${item?.price}`}
             </span>
           </StepLabel>
         </MenuPrice>

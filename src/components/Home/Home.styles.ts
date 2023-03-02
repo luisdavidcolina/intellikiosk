@@ -46,7 +46,7 @@ export const MainImage = styled.img`
 `;
 
 export const Footer = styled.footer`
-  height: 20.83vh;
+  height: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;

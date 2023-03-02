@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { LgSpanWhite, MdSpanWhite } from "@/components/StyledText";
 import { Page, PageInnerWrapper } from "../Page";
 import { PageContext, MenuContext } from "@/data/context";
-
+import Advertise from "../Advertise";
 import {
   Main,
   Slider,
@@ -31,6 +31,7 @@ const HomePage = () => {
   return (
     <Page>
       <PageInnerWrapper onClick={handleClick}>
+      <Advertise />
         <Main>
           <Slider>
             <SliderUl>
