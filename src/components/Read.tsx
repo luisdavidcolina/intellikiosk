@@ -33,7 +33,7 @@ const Read = () => {
         text = text + e.key;
       }
       console.log(text);
-      if (text.length >= 13) {
+      if (text.length >= 1) {
         const itemFind = menuList.find((item) =>
           text.includes(item.code)
         ) as IItem;
@@ -44,7 +44,7 @@ const Read = () => {
       }
     };
     document.addEventListener("keydown", detectedKeyDown);
-  }, [addToCart]);
+  }, []);
 
   return <></>;
 };
